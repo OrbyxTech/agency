@@ -1,3 +1,4 @@
+import getBaseUrl from "../utils/base-url"
 import ReadMoreButton_1 from "./ReadMoreButton_1"
 import TeamMemberCard_1 from "./TeamMemberCard_1"
 
@@ -42,7 +43,7 @@ function OurTeamSection({ className, teamMembers = [], readMoreButtonText, subti
                     teamMembers?.map((member: any) => (
                         <TeamMemberCard_1
                             id={member.id}
-                            img={import.meta.env.BASE_URL + member.img}
+                            img={getBaseUrl() + member.img}
                             name={member.name}
                             role={member.role}
                             socialLinks={member["social-links"]}

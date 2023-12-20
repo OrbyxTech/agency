@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next"
 import Banner_1 from "../components/Banner_1"
 import ProjectDetialsCard from "../components/ProjectDetialsCard"
 import { useEffect } from "react"
+import getBaseUrl from "../utils/base-url"
 
 function ProjectDetails() {
     const [t] = useTranslation()
@@ -21,7 +22,7 @@ function ProjectDetails() {
                 <p className="text-lg mt-3 text-white/60">{t("project-details.subtitle")}</p>
             </div>
 
-            <div className="mt-20 flex flex-col gap-y-12">
+            <div className="mt-20 flex flex-col gap-y-12 reverse-even-child">
                 {
                     (():any =>t("project-details.items") )().map(item => (
                         <ProjectDetialsCard
@@ -30,7 +31,7 @@ function ProjectDetails() {
                             subtitle={item.subtitle}
                             desc={item.desc}
                             button_text={item["button-text"]}
-                            img={import.meta.env.BASE_URL+item.img}
+                            img={getBaseUrl()+item.img}
                             workProperties={item.workProperties}
                         />
                     ))

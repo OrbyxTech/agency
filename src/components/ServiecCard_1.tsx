@@ -33,9 +33,9 @@ function ServiecCard_1({ img="", title, description, readMoreText, showReadMore=
                 {title}
             </p>
 
-            <p className="text-sm leading-6 line-clamp-4 text-slate-600 font-normal">
+            {/* <p className="text-sm leading-6 line-clamp-4 text-slate-600 font-normal">
                 {description}
-            </p>
+            </p> */}
 
             {
                 showReadMore === true

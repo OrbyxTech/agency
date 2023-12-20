@@ -6,7 +6,7 @@ function Logo() {
   return (
     <Link
         to={import.meta.env.BASE_URL}
-        className="text-white text-4xl font-semibold tracking-wide"
+        className="text-white text-3xl font-semibold tracking-wide"
     >
         {import.meta.env.VITE_COMPANY_NAME}
     </Link>

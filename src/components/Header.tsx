@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import MobileMenu from "./MobileMenu"
 import ChangeLangButton from "./ChangeLangButton"
 import { ApplicationRoutes } from "../routes"
+import getBaseUrl from "../utils/base-url"
 
 function Header() {
 
@@ -11,7 +12,7 @@ function Header() {
 
   return (
     <nav
-      className="w-full max-w-[95rem] mx-auto py-5 px-4 lg:px-10 flex items-center justify-between
+      className="w-full max-w-[95rem] bg-slate-950 mx-auto py-5 px-4 lg:px-10 flex items-center justify-between
       bg-[--header-bg]"
     >
 
@@ -106,17 +107,17 @@ function Header() {
               {/* <ChangeLangButton /> */}
             </div>
 
-            <button className="self-stretch py-6 px-6 text-base bg-gray-100 rounded-sm
+            {/* <button className="self-stretch py-6 px-6 text-base bg-gray-100 rounded-sm
             text-slate-800 font-medium active:scale-95 transition-transform duration-300 max-lg:hidden">
               {t("header.cta-text")}
-            </button>
+            </button> */}
           </>
         :
           <>
-            <button className="self-stretch py-6 px-6 text-base bg-gray-100 rounded-sm
+            {/* <button className="self-stretch py-6 px-6 text-base bg-gray-100 rounded-sm
             text-slate-800 font-medium active:scale-95 transition-transform duration-300 max-lg:hidden">
               {t("header.cta-text")}
-            </button>
+            </button> */}
 
             <div className="lg:hidden">
               <MobileMenu />
@@ -131,7 +132,7 @@ function Header() {
               />
 
               <DesktopNavLink
-                href={import.meta.env.BASE_URL+"#about-us-section"}
+                href={getBaseUrl()+"#about-us-section"}
                 text={t("about-us.title")}
                 asElem="a"
               />
@@ -155,7 +156,7 @@ function Header() {
               /> */}
 
               <DesktopNavLink
-                href={import.meta.env.BASE_URL+"#our-services-section"}
+                href={getBaseUrl()+"#our-services-section"}
                 text={t("home.services.title")}
                 asElem="a"
               />
@@ -207,7 +208,7 @@ function Header() {
               /> */}
 
               <DesktopNavLink 
-                href={import.meta.env.BASE_URL+"#our-projects-section"}
+                href={getBaseUrl()+"#our-projects-section"}
                 text={t("home.projects.title")}
                 asElem="a"
               />

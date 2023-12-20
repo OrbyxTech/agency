@@ -24,10 +24,16 @@ function WhyChooseUs({ className }: Props) {
                 (():any => t("home.why-choose-us.items"))()?.map((item:any) => (
                     <div key={item.id} className="flex flex-col gap-y-3">
                         <p className="text-2xl text-slate-900/90 border-b border-b-slate-200 pb-0.5 w-max font-medium tracking-wide">{item.title}</p>
-                        <p className="text-slate-600 font-normal text-base mt-2">
+                        {/* <p className="text-slate-600 font-normal text-base mt-2">
                             {item.desc}
-                        </p>
-                        <ReadMoreButton_1 text={item['read-more-text']} className="mt-4" />
+                        </p> */}
+                        {
+                            item["read-more-text"]["visible"]
+                            ?
+                                <ReadMoreButton_1 text={item['read-more-text']["text"]} className="mt-4" />
+                            :
+                                false
+                        }
                     </div>
                 ))
             }

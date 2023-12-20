@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ArticleCard_1 from "./ArticleCard_1"
 import { latestNews } from "../utils/http";
 import { latestNewsOutPut } from "../utils/http/latestNews";
+import getBaseUrl from "../utils/base-url";
 
 interface Props {
     className: string,
@@ -28,7 +29,7 @@ function LatestNewsSection({ className, readMoreText, title, showReadMoreButton=
                 news.map(item => (
                 <ArticleCard_1
                     id={item.id}
-                    img={import.meta.env.BASE_URL+item.img}
+                    img={getBaseUrl()+item.img}
                     title={item.title}
                     desc={item.desc}
                     pubDate={item.pubDate}

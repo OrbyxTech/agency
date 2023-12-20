@@ -1,4 +1,5 @@
 
+import { HashLink } from 'react-router-hash-link';
 import Logo from "./Logo"
 import { useTranslation } from "react-i18next"
 
@@ -10,17 +11,15 @@ function Footer() {
             <div className="mx-auto max-w-screen-xl space-y-12 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
 
                 {/* links */}
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 gap-y-20">
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-[35%_1fr] gap-y-20">
 
                     <div>
                         <div>
                             <Logo />
                         </div>
-                        <p className="mt-4 max-w-xs text-sm text-gray-300/95">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non
-                            cupiditate quae nam molestias.
-                        </p>
-                        <ul className="mt-8 flex gap-6">
+                        <p className="mt-4 w-full lg:max-w-sm text-sm text-gray-300/95 leading-6 font-[iranyekan400]">
+                            این شرکت با داشتن کادر مجرب و دانش فنی روز و با توجه به ارزیابی بازار قطعات و محصولات صنعتی از سال 1380 شروع به تولید قطعات صنعتی نموده است و در تمامی سالها با توجه به ارزش مداری در جهت تولید مرغوب و رضایت مشتری ادامه فعالیت داده است .و در سالهای اخیر با توجه به سیاست جدید اقدام به شروع عملیات حرارتی قطعات و ماشین کاری آنها نموده و شرایط را برای تولید قطعات به صورت کامل مهیا نموده است .همچنین این شرکت با داشتن سه خط فورج و خط عملیات حرارتی با کوره های پیوسته و حمام نمک و واحد قالبسازی سعی در انجام همه امور مورد نیاز خود در یک مجموعه کاری به صورت کامل را دارد.                        </p>
+                        {/* <ul className="mt-8 flex gap-6">
                             <li>
                                 <a
                                     href="/"
@@ -127,10 +126,10 @@ function Footer() {
                                     </svg>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> */}
                     </div>
 
-                    <div className="grid grid-cols-2 max-sm:gap-y-12 gap-8 sm:grid-cols-3 lg:col-span-2">
+                    <div className="grid grid-cols-2 max-sm:gap-y-12 gap-8 sm:grid-cols-3">
                         {/* <div>
                             <p className="font-medium text-gray-100 text-xl">Contact</p>
                             <ul className="mt-6 space-y-4 text-sm">
@@ -207,9 +206,9 @@ function Footer() {
                                         {
                                             item.items?.map(item => (
                                                 <li key={item.id}>
-                                                    <a href={item.link} className="text-gray-300/95 transition hover:opacity-75">
+                                                    <HashLink to={item.link} className="text-gray-300/95 font-[iranyekan300] transition hover:opacity-75">
                                                         {item.title}
-                                                    </a>
+                                                    </HashLink>
                                                 </li>
                                             ))
                                         }
@@ -224,7 +223,7 @@ function Footer() {
                 </div>
 
                 <p className="text-xs text-gray-400">
-                    © 2023. <span className="text-gray-300">Orbyx</span>. All rights reserved.
+                    © 2023. <span className="text-gray-300">{import.meta.env.VITE_COMPANY_NAME}</span>. All rights reserved.
                 </p>
 
             </div>

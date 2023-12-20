@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next"
 import ProjectCard_1 from "./ProjectCard_1"
+import getBaseUrl from "../utils/base-url"
 
 interface Props {
     className: string,
@@ -19,13 +20,13 @@ function ProjectsSection({className, projects, title}: Props) {
             <ProjectCard_1
                 key={project.id}
                 id={project.id}
-                img={import.meta.env.BASE_URL+project.img}
+                img={getBaseUrl()+project.img}
                 title={project.title}
                 desc={project.desc}
-                link={import.meta.env.BASE_URL+project.link}
+                link={getBaseUrl()+project.link}
                 cta_text={t("home.projects.read-more-text")}
                 showDesc={false}
-                showReadMoreButton={false}
+                showReadMoreButton={true}
             />
             ))
         }

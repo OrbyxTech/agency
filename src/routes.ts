@@ -2,24 +2,24 @@
 export const ApplicationRoutes = {
 
     pages: {
-        home: import.meta.env.BASE_URL,
-        contact: import.meta.env.BASE_URL+"/contact-us",
+        home: "/",
+        contact: "/contact-us",
         company: {
-            "about-us": import.meta.env.BASE_URL+"/company/about-us",
-            "our-team": import.meta.env.BASE_URL+"/company/our-team",
-            services: import.meta.env.BASE_URL+"/company/services"
+            "about-us": "/company/about-us",
+            "our-team": "/company/our-team",
+            services: "/company/services"
         },
         work: {
-            project: import.meta.env.BASE_URL+"/work/project",
-            "project-details": import.meta.env.BASE_URL+"/work/project-details",
-            "best-projects": import.meta.env.BASE_URL+"/work/best-projects"
+            project: "/work/project",
+            "project-details": "/work/project-details",
+            "best-projects": "/work/best-projects"
         },
         blog: {
-            "blog": import.meta.env.BASE_URL+"/blog",
-            "latest-articles": import.meta.env.BASE_URL+"/blog/latest-articles",
-            "recommended-for-you": import.meta.env.BASE_URL+"/blog/recommended-for-you",
-            "best-of-day": import.meta.env.BASE_URL+"/blog/best-of-day",
-            "best-of-week": import.meta.env.BASE_URL+"/blog/best-of-week"
+            "blog": "/blog",
+            "latest-articles": "/blog/latest-articles",
+            "recommended-for-you": "/blog/recommended-for-you",
+            "best-of-day": "/blog/best-of-day",
+            "best-of-week": "/blog/best-of-week"
         }
     }
 

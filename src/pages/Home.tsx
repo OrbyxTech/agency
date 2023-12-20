@@ -10,16 +10,19 @@ import WhyChooseUs from "../components/WhyChooseUs"
 import Banner_1 from "../components/Banner_1"
 import ScrollToTop from "react-scroll-to-top";
 import { Link, useLocation } from "react-router-dom"
-import { useEffect, useRef } from "react"
+import { isValidElement, useEffect, useRef } from "react"
+import useGetHomePageDetails from "../hooks/useGetHomePageDetails"
 
 function Home() {
   const [t, i18n] = useTranslation()
   const container = useRef(null)
   const location = useLocation()
 
+  const { homePageDetails, isHomePageDetailsLoading, isHomePageDetailsValidating, homePageDetailsError } = useGetHomePageDetails()
+
   useEffect(
     () => {
-      if(location.hash.length > 0) {
+      if (location.hash.length > 0) {
         setTimeout(() => {
           document.getElementById(location.hash.slice(1)).scrollIntoView()
         }, 200);
@@ -29,14 +32,17 @@ function Home() {
   )
 
 
+  if(isHomePageDetailsLoading || isHomePageDetailsValidating) return <p>Loading ...</p>
+
+
   return (
     <div className="pb-20">
-      <Hero />
+      <Hero image={import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + homePageDetails.data.attributes.heroImage.data.attributes.url} />
       <div id="about-us-section">
         <AboutUs_1 />
       </div>
       <div id="our-services-section">
-        <Services_1 className="mt-16" />
+        <Services_1 showReadMoreButton={false} className="mt-16" />
       </div>
       <StatsSection_1 className="mt-14 px-4 lg:px-10" stats={t("home.stats")} />
       <div id="our-projects-section">

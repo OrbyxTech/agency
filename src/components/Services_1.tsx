@@ -1,3 +1,4 @@
+import getBaseUrl from "../utils/base-url"
 import ServiecCard_1 from "./ServiecCard_1"
 import { useTranslation } from "react-i18next"  
 
@@ -28,7 +29,7 @@ function Services_1({className="", showReadMoreButton=true}: props) {
           (():any => t("home.services.items"))()?.map((item, i) => (
             <ServiecCard_1
               key={i}
-              img={import.meta.env.BASE_URL+item?.img}
+              img={getBaseUrl()+item?.img}
               title={item?.title}
               description={item?.description}
               readMoreText={item?.["read-more-text"]}

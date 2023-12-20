@@ -1,3 +1,4 @@
+import getBaseUrl from "../utils/base-url"
 
 interface SocialLink {
     id: string,
@@ -33,7 +34,7 @@ function TeamMemberCard_1({ className="", id, img, name, role, socialLinks=[] }:
                                 <img
                                     key={socialLink.id}
                                     alt=""
-                                    src={import.meta.env.BASE_URL+socialLink.img}
+                                    src={getBaseUrl()+socialLink.img}
                                     className="w-6 h-6 transition-opacity duration-300 group-hover:opacity-70 object-center object-cover"
                                 />
                             </a>

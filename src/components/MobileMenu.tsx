@@ -15,6 +15,7 @@ import { HashLink } from 'react-router-hash-link';
 //     Box
 // } from "@chakra-ui/react"
 import { ApplicationRoutes } from "../routes"
+import getBaseUrl from "../utils/base-url"
 
 const getLang = (lng) => {
     const languages = ["en", "fa"]
@@ -63,7 +64,7 @@ function MobileMenu() {
 
                     <Link
                         to="/ecommerce-webapp_vite_react"
-                        className="text-3xl font-[iranyekan500] text-slate-50 block mx-auto"
+                        className="text-2xl font-[iranyekan500] text-slate-50 block mx-auto"
                     >
                         {t("mobile-menu.title")}
                     </Link>
@@ -94,7 +95,7 @@ function MobileMenu() {
                         </Link>
 
                         <HashLink
-                            to={import.meta.env.BASE_URL+"#about-us-section"}
+                            to={getBaseUrl()+"#about-us-section"}
                             className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
                             hover:bg-white/5 rounded-lg transition-colors duration-300"
                         >
@@ -102,7 +103,7 @@ function MobileMenu() {
                         </HashLink>
 
                         <HashLink
-                            to={import.meta.env.BASE_URL+"#our-services-section"}
+                            to={getBaseUrl()+"#our-services-section"}
                             className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
                             hover:bg-white/5 rounded-lg transition-colors duration-300"
                         >
@@ -110,12 +111,20 @@ function MobileMenu() {
                         </HashLink>
 
                         <HashLink
-                            to={import.meta.env.BASE_URL+"#our-projects-section"}
+                            to={getBaseUrl()+"#our-projects-section"}
                             className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
                             hover:bg-white/5 rounded-lg transition-colors duration-300"
                         >
                             {t("home.projects.title")}
                         </HashLink>
+
+                        <Link
+                            to={ApplicationRoutes.pages.contact}
+                            className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
+                            hover:bg-white/5 rounded-lg transition-colors duration-300"
+                        >
+                            {t("header.contact")}
+                        </Link>
                     </div>
 
                     {/* <Accordion

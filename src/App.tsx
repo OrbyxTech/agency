@@ -15,23 +15,22 @@ import Projects from "./pages/Projects"
 import ProjectDetails from "./pages/ProjectDetails"
 
 function App() {
-  const [_, i18n] = useTranslation()  
+  const [_, i18n] = useTranslation()
 
   // set theme 
-  useEffect(
-    () => {
-      const link = document.createElement("link")
-      link.rel = "stylesheet"
-      link.href = import.meta.env.BASE_URL+"/themes/light.css"
-      document.head.append(link)
-    },
-    []
-  )
+  // useEffect(
+  //   () => {
+  //     const link = document.createElement("link")
+  //     link.rel = "stylesheet"
+  //     link.href = import.meta.env.BASE_URL+"/themes/light.css"
+  //     document.head.append(link)
+  //   },
+  //   []
+  // )
 
   // set direction based on current languaglanguage
   useEffect(
     () => {
-      console.log(i18n.language);
       document.body.dir = i18n.dir(i18n.language)
     },
     [i18n.language]
@@ -44,7 +43,7 @@ function App() {
       <ApplicationLayout>
         <Routes>
           <Route path={ApplicationRoutes.pages.home} element={<Home />} />
-          <Route path={import.meta.env.BASE_URL+"/blog"} element={<p>hello world from blog</p>} />
+          <Route path={ApplicationRoutes.pages.blog.blog} element={<p>hello world from blog</p>} />
           <Route path={ApplicationRoutes.pages.contact} element={<ContactUs />} />
           <Route path={ApplicationRoutes.pages.company["about-us"]} element={<AboutUs />} />
           <Route path={ApplicationRoutes.pages.company["our-team"]} element={<OurTeam />} />

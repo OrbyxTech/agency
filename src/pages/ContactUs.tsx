@@ -1,5 +1,6 @@
 
 import { useTranslation } from "react-i18next"
+import getBaseUrl from "../utils/base-url"
 
 function ContactUs() {
     const [t] = useTranslation()
@@ -25,7 +26,7 @@ function ContactUs() {
                             <img
                                 loading="lazy"
                                 alt=""
-                                src={import.meta.env.BASE_URL+"/assets/icons/icons8-instagram-50.png"}
+                                src={getBaseUrl()+"assets/icons/icons8-instagram-50.png"}
                                 className="w-5 h-5 hover:opacity-60 transition-opacity duration-300"
                             />
                         </a>
@@ -33,7 +34,7 @@ function ContactUs() {
                             <img
                                 loading="lazy"
                                 alt=""
-                                src={import.meta.env.BASE_URL+"/assets/icons/icons8-youtube-50.png"}
+                                src={getBaseUrl()+"assets/icons/icons8-youtube-50.png"}
                                 className="w-5 h-5 hover:opacity-60 transition-opacity duration-300"
                             />
                         </a>
@@ -41,7 +42,7 @@ function ContactUs() {
                             <img
                                 loading="lazy"
                                 alt=""
-                                src={import.meta.env.BASE_URL+"/assets/icons/icons8-twitter-50.png"}
+                                src={getBaseUrl()+"assets/icons/icons8-twitter-50.png"}
                                 className="w-5 h-5 hover:opacity-60 transition-opacity duration-300"
                             />
                         </a>

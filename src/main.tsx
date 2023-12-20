@@ -10,7 +10,7 @@ const sleep = (ms:number) => {
   })
 }
 const App = lazy(async () => {
-  await sleep(8000)
+  await sleep(7500)
   return import("./App.tsx")
 })
 import './index.css'

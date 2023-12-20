@@ -33,6 +33,7 @@
     "react-router-dom": "^6.12.1",
     "react-router-hash-link": "^2.4.3",
     "react-scroll-to-top": "^3.0.0",
+    "swr": "^2.2.4",
     "tailwind-merge": "^1.13.1",
     "tailwindcss-animate": "^1.0.6"
   },

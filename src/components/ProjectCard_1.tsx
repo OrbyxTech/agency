@@ -40,7 +40,7 @@ function ProjectCard_1({ id, img, title, desc, link, cta_text, showDesc=true, sh
             {
                 showReadMoreButton
                 ?
-                    <ReadMoreButton_1 text={cta_text} />
+                    <ReadMoreButton_1 link={link} className="mt-4" text={cta_text} />
                 :
                     false
             }

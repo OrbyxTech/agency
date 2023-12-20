@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import OurTeamSection from "../components/OurTeamSection"
 import WhyChooseUs from "../components/WhyChooseUs"
 import Banner_1 from "../components/Banner_1"
+import getBaseUrl from "../utils/base-url"
 
 function AboutUs() {
   const [t, i18n] = useTranslation()
@@ -37,7 +38,7 @@ function AboutUs() {
         <img
           loading="lazy"
           alt=""
-          src={import.meta.env.BASE_URL+"/assets/images/img-4.jpg"}
+          src={getBaseUrl()+"/assets/images/img-4.jpg"}
           className="w-full h-auto rounded-sm max-lg:max-h-[33rem] max-lg:w-auto max-lg:order-1"
         />
 
