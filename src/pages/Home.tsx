@@ -31,6 +31,11 @@ function Home() {
     threshold: 1,
   });
 
+  const { ref: projectsRef, inView: projectsInView } = useInView({
+    triggerOnce: true,
+    threshold: 1,
+  });
+
   const {
     homePageDetails,
     isHomePageDetailsLoading,
@@ -101,11 +106,12 @@ function Home() {
       ) : null}
 
       {homePageDetails.data.attributes.showProjectsSection ? (
-        <div id="our-projects-section">
+        <div ref={projectsRef} id="our-projects-section">
           <ProjectsSection
             projects={t("home.projects.items")}
             title={homePageDetails.data.attributes.projects__title}
             className="mt-20 px-4 lg:px-10"
+            isInView={projectsInView}
           />
         </div>
       ) : null}
