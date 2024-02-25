@@ -17,7 +17,7 @@ function StatsSection_1({ className, stats, items }: Props) {
                 items?.map(item => (
                     <div className="relative" key={item.id}>
                         <p className="text-white/90 text-2xl lg:text-3xl w-max font-medium absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
-                            {item.title}
+                            {item.title} test
                         </p>
                         <AnimatedStatCount
                             speed={25}
