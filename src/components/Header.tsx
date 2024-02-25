@@ -8,7 +8,7 @@ import getBaseUrl from "../utils/base-url"
 
 function Header() {
 
-  const [ t, i18n ] = useTranslation()
+  const [t, i18n] = useTranslation()
 
   return (
     <nav
@@ -18,7 +18,7 @@ function Header() {
 
       {
         i18n.dir(i18n.language) === "ltr"
-        ?
+          ?
           <>
             <Logo />
 
@@ -26,7 +26,7 @@ function Header() {
               <MobileMenu />
             </div>
 
-            <div  
+            <div
               className="flex items-center gap-x-7 max-lg:hidden"
             >
               <DesktopNavLink
@@ -112,7 +112,7 @@ function Header() {
               {t("header.cta-text")}
             </button> */}
           </>
-        :
+          :
           <>
             {/* <button className="self-stretch py-6 px-6 text-base bg-gray-100 rounded-sm
             text-slate-800 font-medium active:scale-95 transition-transform duration-300 max-lg:hidden">
@@ -123,7 +123,7 @@ function Header() {
               <MobileMenu />
             </div>
 
-            <div  
+            <div
               className="flex items-center gap-x-7 max-lg:hidden"
             >
               <DesktopNavLink
@@ -132,7 +132,7 @@ function Header() {
               />
 
               <DesktopNavLink
-                href={getBaseUrl()+"#about-us-section"}
+                href={getBaseUrl() + "#about-us-section"}
                 text={t("about-us.title")}
                 asElem="a"
               />
@@ -156,7 +156,7 @@ function Header() {
               /> */}
 
               <DesktopNavLink
-                href={getBaseUrl()+"#our-services-section"}
+                href={getBaseUrl() + "#our-services-section"}
                 text={t("home.services.title")}
                 asElem="a"
               />
@@ -207,8 +207,8 @@ function Header() {
                 ]}
               /> */}
 
-              <DesktopNavLink 
-                href={getBaseUrl()+"#our-projects-section"}
+              <DesktopNavLink
+                href={getBaseUrl() + "#our-projects-section"}
                 text={t("home.projects.title")}
                 asElem="a"
               />
@@ -217,7 +217,7 @@ function Header() {
                 href={ApplicationRoutes.pages.contact}
                 text={t("header.contact")}
               />
-              
+
               {/* <ChangeLangButton /> */}
             </div>
 
