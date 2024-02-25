@@ -2,8 +2,16 @@
 import { useTranslation } from "react-i18next"
 // import AwardsAccordion from "./AwardsAccordion"
 import getBaseUrl from "../utils/base-url"
+import { StepIndicatorProps } from "@chakra-ui/react";
 
-function AboutUs_1() {
+
+interface Props {
+    title: string;
+    text: string;
+    image: string;
+}
+
+function AboutUs_1({ image, text, title }: Props) {
 
     const [t] = useTranslation()
 
@@ -12,15 +20,15 @@ function AboutUs_1() {
 
             <img
                 alt=""
-                src={getBaseUrl()+"/assets/images/about-us-bg.jpg"}
+                src={image}
                 className="w-full h-auto max-h-[42rem] block mx-auto object-center object-cover rounded-sm"
             />
 
             <div className="flex flex-col gap-y-6 w-full">
 
-                <p className="text-5xl font-normal text-slate-800 tracking-wide">{t("home.about-us.title")}</p>
+                <p className="text-5xl font-normal text-slate-800 tracking-wide">{title}</p>
                 <p className="text-base text-slate-700/80 tracking-wide font-medium max-w-prose">
-                    {t("home.about-us.subtitle")}
+                    {text}
                 </p>
                 {/* <p className="text-2xl font-normal text-slate-800 tracking-wide">{t("home.awards.title")}</p> */}
 

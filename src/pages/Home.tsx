@@ -32,23 +32,89 @@ function Home() {
   )
 
 
-  if(isHomePageDetailsLoading || isHomePageDetailsValidating) return <p>Loading ...</p>
+  if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+    return <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
+      <p className="text-lg font-medium">Loading ....</p>
+    </div>
+  }
 
 
   return (
     <div className="pb-20">
-      <Hero image={import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + homePageDetails.data.attributes.heroImage.data.attributes.url} />
-      <div id="about-us-section">
-        <AboutUs_1 />
-      </div>
-      <div id="our-services-section">
-        <Services_1 showReadMoreButton={false} className="mt-16" />
-      </div>
-      <StatsSection_1 className="mt-14 px-4 lg:px-10" stats={t("home.stats")} />
-      <div id="our-projects-section">
-        <ProjectsSection projects={t("home.projects.items")} title={t("home.projects.title")} className="mt-20 px-4 lg:px-10" />
-      </div>
-      <WhyChooseUs className="mt-28 px-4 lg:px-10" />
+      <Hero
+        title={homePageDetails.data.attributes.heroTitle}
+        text={homePageDetails.data.attributes.heroText}
+        image={import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + homePageDetails.data.attributes.heroImage.data.attributes.url}
+      />
+
+      {
+        homePageDetails.data.attributes.showAboutUsSection
+          ?
+          <div id="about-us-section">
+            <AboutUs_1
+              title={homePageDetails.data.attributes.aboutUs__title}
+              text={homePageDetails.data.attributes.aboutUs__text}
+              image={import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + homePageDetails.data.attributes.aboutUs__image.data.attributes.url}
+            />
+          </div>
+          :
+          null
+      }
+
+      {
+        homePageDetails.data.attributes.showServicesSection
+          ?
+          <div id="our-services-section">
+            <Services_1
+              title={homePageDetails.data.attributes.services__title}
+              text={homePageDetails.data.attributes.services__text}
+              items={homePageDetails.data.attributes.ourServices}
+              showReadMoreButton={false} className="mt-16"
+            />
+          </div>
+          :
+          null
+      }
+
+      {
+        homePageDetails.data.attributes.showCountDownSection
+          ?
+          <StatsSection_1
+            items={homePageDetails.data.attributes.countDown}
+            className="mt-14 px-4 lg:px-10" stats={t("home.stats")}
+          />
+          :
+          null
+      }
+
+      {
+        homePageDetails.data.attributes.showProjectsSection
+          ?
+          <div id="our-projects-section">
+            <ProjectsSection
+              projects={t("home.projects.items")}
+              title={homePageDetails.data.attributes.projects__title}
+              className="mt-20 px-4 lg:px-10"
+            />
+          </div>
+          :
+          null
+      }
+
+      {
+
+        homePageDetails.data.attributes.showWhyChooseUsSection
+          ?
+          <WhyChooseUs
+            title={homePageDetails.data.attributes.whyChooseUs__title}
+            text={homePageDetails.data.attributes.whyChooseUs__text}
+            items={homePageDetails.data.attributes.whyChooseUs__reasons}
+            className="mt-28 px-4 lg:px-10"
+          />
+          :
+          null
+      }
+
       {/* <OurTeamSection
         className="mt-28 px-4 lg:px-10"
         teamMembers={t("home.our-team.items")}
@@ -61,7 +127,20 @@ function Home() {
         title={t("home.latest-news.title")}
         readMoreText={t("home.latest-news.read-more-text")}
       /> */}
-      <Banner_1 className="mt-28 px-4 lg:px-10" />
+
+      {
+        homePageDetails.data.attributes.showCta1Section
+          ?
+          <Banner_1
+            text={homePageDetails.data.attributes.cta1__title}
+            btnText={homePageDetails.data.attributes.cta1__btnText}
+            bgColor={homePageDetails.data.attributes.cta1__bgColor}
+            className="mt-28 px-4 lg:px-10"
+          />
+          :
+          null
+      }
+
       <ScrollToTop smooth top={600} width="1.1rem" height="1.1rem" className="grid xl:scale-110 2xl:scale-125 place-items-center shadow-md shadow-black/20 bg-slate-50" />
     </div>
   )

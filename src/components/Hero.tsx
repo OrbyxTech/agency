@@ -22,8 +22,8 @@ function Hero({ image, text, title }: Props) {
             />
 
             <div className="row-start-1 col-start-1 bg-black/40 flex flex-col items-center justify-center p-4">
-                <h1 className="text-white text-3xl lg:text-4xl font-medium">{t("home.hero.title")}</h1>
-                <p className="text-4xl lg:text-6xl text-center text-white font-semibold mt-6">{t("home.hero.subtitle")}</p>
+                <h1 className="text-white text-3xl lg:text-4xl font-medium">{title}</h1>
+                <p className="text-4xl lg:text-6xl text-center text-white font-semibold mt-6">{text}</p>
                 {/* <p className="text-white tracking-wide text-lg lg:text-xl font-normal mt-10 max-w-prose">
                 {t("home.hero.description")}
             </p> */}

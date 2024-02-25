@@ -29,12 +29,12 @@ function App() {
   // )
 
   // set direction based on current languaglanguage
-  useEffect(
-    () => {
-      document.body.dir = i18n.dir(i18n.language)
-    },
-    [i18n.language]
-  )
+  // useEffect(
+  //   () => {
+  //     document.body.dir = i18n.dir(i18n.language)
+  //   },
+  //   [i18n.language]
+  // )
   
 
 

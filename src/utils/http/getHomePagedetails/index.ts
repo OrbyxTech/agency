@@ -6,6 +6,7 @@ interface RootObject {
 }
 
 interface Meta {
+    [prop: string]: any;
 }
 
 interface Data3 {
@@ -137,28 +138,27 @@ interface Thumbnail {
 }
 
 
-
-
-
-export default async function getHomePagedetails(): Promise<RootObject> {
+export default function getHomePagedetails(): Promise<RootObject> {
     return new Promise(
-        async (resolve, reject) => {
-            try {
-                const res = await fetch(
-                    import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT
-                )
+        (resolve, reject) => {
+            (async () => {
+                try {
+                    const res = await fetch(
+                        import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT
+                    )
 
-                console.log(import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT)
+                    console.log(import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT)
 
-                if (res.ok) {
-                    resolve(await res.json())
-                }
-                else {
+                    if (res.ok) {
+                        resolve(await res.json())
+                    }
+                    else {
+                        reject(undefined)
+                    }
+                } catch (error) {
                     reject(undefined)
                 }
-            } catch (error) {
-                reject(undefined)
-            }
+            })()
         }
     )
 }

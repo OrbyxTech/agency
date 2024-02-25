@@ -2,9 +2,17 @@ import { useTranslation } from "react-i18next"
 import OurTeamSection from "../components/OurTeamSection"
 import AwardsAccordion from "../components/AwardsAccordion"
 import Banner_1 from "../components/Banner_1"
+import useGetHomePageDetails from "../hooks/useGetHomePageDetails"
 
 function OurTeam() {
     const [t] = useTranslation()
+
+    const { homePageDetails, isHomePageDetailsLoading, isHomePageDetailsValidating } = useGetHomePageDetails()
+    if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+        return <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
+            <p className="text-lg font-medium">Loading ....</p>
+        </div>
+    }
 
     return (
         <div className="w-full min-h-screen">
@@ -46,7 +54,12 @@ function OurTeam() {
                 <AwardsAccordion />
             </div>
 
-            <Banner_1 className="mt-20" />
+            <Banner_1
+                text={homePageDetails.data.attributes.cta1__title}
+                btnText={homePageDetails.data.attributes.cta1__btnText}
+                bgColor={homePageDetails.data.attributes.cta1__bgColor}
+                className="mt-20"
+            />
 
         </div>
     )

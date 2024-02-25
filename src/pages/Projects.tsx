@@ -1,9 +1,17 @@
 import { useTranslation } from "react-i18next"
 import ProjectsSection from "../components/ProjectsSection"
 import Banner_1 from "../components/Banner_1"
+import useGetHomePageDetails from "../hooks/useGetHomePageDetails"
 
 function Projects() {
     const [t] = useTranslation()
+
+    const { homePageDetails, isHomePageDetailsLoading, isHomePageDetailsValidating } = useGetHomePageDetails()
+    if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+        return <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
+            <p className="text-lg font-medium">Loading ....</p>
+        </div>
+    }
 
     return (
         <div className="w-full min-h-screen">
@@ -15,7 +23,12 @@ function Projects() {
 
             <ProjectsSection projects={t("home.projects.items")} title={t("home.projects.title")} className="mt-20 px-4 lg:px-10" />
 
-            <Banner_1 className="mt-20 w-full" />
+            <Banner_1
+                text={homePageDetails.data.attributes.cta1__title}
+                btnText={homePageDetails.data.attributes.cta1__btnText}
+                bgColor={homePageDetails.data.attributes.cta1__bgColor}
+                className="mt-20 w-full"
+            />
 
         </div>
     )
