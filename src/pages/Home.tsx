@@ -21,13 +21,14 @@ function Home() {
   const container = useRef(null);
   const location = useLocation();
 
-  const {
-    ref: aboutUsRef,
-    inView: aboutUsInView,
-    entry: aboutUsEntry,
-  } = useInView({
+  const { ref: aboutUsRef, inView: aboutUsInView } = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 1,
+  });
+
+  const { ref: servicesRef, inView: servicesInView } = useInView({
+    triggerOnce: true,
+    threshold: 1,
   });
 
   const {
@@ -79,15 +80,16 @@ function Home() {
       ) : null}
 
       {homePageDetails.data.attributes.showServicesSection ? (
-        <div id="our-services-section">
+        <motion.div ref={servicesRef} id="our-services-section">
           <Services_1
             title={homePageDetails.data.attributes.services__title}
             text={homePageDetails.data.attributes.services__text}
             items={homePageDetails.data.attributes.ourServices}
             showReadMoreButton={false}
             className="mt-16"
+            isInView={servicesInView}
           />
-        </div>
+        </motion.div>
       ) : null}
 
       {homePageDetails.data.attributes.showCountDownSection ? (
