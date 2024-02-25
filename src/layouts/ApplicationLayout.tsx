@@ -4,16 +4,16 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 
 interface ApplicationLayoutProps {
-    children: ReactNode
+  children: ReactNode
 }
 
-function ApplicationLayout({children}: ApplicationLayoutProps) {
+function ApplicationLayout({ children }: ApplicationLayoutProps) {
 
   return (
     <div>
-        <Header />
-        {children}
-        <Footer />
+      <Header />
+      {children}
+      <Footer />
     </div>
   )
 }

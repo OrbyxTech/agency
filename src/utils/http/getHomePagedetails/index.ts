@@ -147,7 +147,7 @@ export default function getHomePagedetails(): Promise<RootObject> {
                         import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT
                     )
 
-                    console.log(import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT)
+                    // console.log(import.meta.env.VITE_PUBLIC_SERVER_BASE_URL + import.meta.env.VITE_PUBLIC_GET_HOME_PAGE_DETAILS_ENDPOINT)
 
                     if (res.ok) {
                         resolve(await res.json())
