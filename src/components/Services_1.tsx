@@ -14,7 +14,7 @@ interface props {
     title: string;
     text: string;
   }>;
-  isInView: boolean;
+  isInView?: boolean;
 }
 
 function Services_1({
@@ -23,7 +23,7 @@ function Services_1({
   items,
   text,
   title,
-  isInView,
+  isInView = true,
 }: props) {
   const [t] = useTranslation();
 

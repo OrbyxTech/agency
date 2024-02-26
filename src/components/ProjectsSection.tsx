@@ -8,10 +8,15 @@ interface Props {
   className: string;
   projects: any;
   title: string;
-  isInView: boolean;
+  isInView?: boolean;
 }
 
-function ProjectsSection({ className, projects, title, isInView }: Props) {
+function ProjectsSection({
+  className,
+  projects,
+  title,
+  isInView = true,
+}: Props) {
   const [t] = useTranslation();
 
   return (

@@ -8,10 +8,10 @@ interface Props {
   title: string;
   text: string;
   image: string;
-  isInView: boolean;
+  isInView?: boolean;
 }
 
-function AboutUs_1({ image, text, title, isInView }: Props) {
+function AboutUs_1({ image, text, title, isInView = true }: Props) {
   const [t] = useTranslation();
 
   return (
