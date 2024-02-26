@@ -1,8 +1,24 @@
 import { useTranslation } from "react-i18next";
 import getBaseUrl from "../utils/base-url";
 
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { ContactUsSchema, ContactUsSchemaType } from "../lib/validation";
+
 function ContactUs() {
   const [t] = useTranslation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactUsSchemaType>({ resolver: zodResolver(ContactUsSchema) });
+
+  const onSubmit = (data: ContactUsSchemaType) => {
+    console.log(data);
+  };
 
   return (
     <div className="w-full min-h-screen">
@@ -54,7 +70,10 @@ function ContactUs() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-y-4 w-full">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-y-4 w-full"
+        >
           <input
             type="text"
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
@@ -62,18 +81,22 @@ function ContactUs() {
                         transition-colors duration-200"
             placeholder={t("contact-us.form.name")}
             maxLength={80}
+            {...register("fullname")}
           />
 
           <input
-            type="phone"
+            type="text"
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200"
-            placeholder={"Phone*"}
-            pattern={"09[0-9]{9}"}
-            required
-            maxLength={80}
+            placeholder={"Phone* (09202003344)"}
+            {...register("phone")}
           />
+          {errors.phone && (
+            <span className={"text-sm text-red-500"}>
+              {errors.phone.message}
+            </span>
+          )}
 
           <input
             type="email"
@@ -82,6 +105,7 @@ function ContactUs() {
                         transition-colors duration-200"
             placeholder={t("contact-us.form.email")}
             maxLength={80}
+            {...register("email")}
           />
 
           <textarea
@@ -91,6 +115,7 @@ function ContactUs() {
             placeholder={t("contact-us.form.message")}
             rows={5}
             maxLength={700}
+            {...register("description")}
           ></textarea>
 
           <button
@@ -99,7 +124,7 @@ function ContactUs() {
           >
             {t("contact-us.form.submit-text")}
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
