@@ -6,6 +6,7 @@ import Banner_1 from "../components/Banner_1";
 import getBaseUrl from "../utils/base-url";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
 
+import { MapPin } from "lucide-react";
 import Map from "../components/shared/Map.tsx";
 function AboutUs() {
   const [t, i18n] = useTranslation();
@@ -38,6 +39,11 @@ function AboutUs() {
 
           <p className="text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
             {t("about-us.text-2")}
+          </p>
+
+          <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
+            {/*    TODO:Add dynamic Address field    */}
+            <MapPin /> <span>Address Field</span>
           </p>
 
           {/* <div className="mt-9">
