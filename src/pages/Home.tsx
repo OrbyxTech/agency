@@ -144,6 +144,7 @@ function Home() {
           btnText={homePageDetails.data.attributes.cta1__btnText}
           bgColor={homePageDetails.data.attributes.cta1__bgColor}
           className="mt-28 px-4 lg:px-10"
+          tel={"+989112223344"}
         />
       ) : null}
 

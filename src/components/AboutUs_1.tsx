@@ -14,8 +14,6 @@ interface Props {
 function AboutUs_1({ image, text, title, isInView }: Props) {
   const [t] = useTranslation();
 
-  console.log(isInView);
-
   return (
     <section className="w-full px-4 lg:px-10 grid grid-cols-1 gap-6 gap-y-12 lg:grid-cols-[45%_55%] place-items-center max-lg:mt-16 lg:-translate-y-6">
       {isInView && (
