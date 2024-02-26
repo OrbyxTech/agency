@@ -6,17 +6,42 @@ import Banner_1 from "../components/Banner_1";
 import getBaseUrl from "../utils/base-url";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
 
-import { MapPin } from "lucide-react";
+import { MapPin, PhoneIcon } from "lucide-react";
 import Map from "../components/shared/Map.tsx";
+import { useGetAboutUs } from "../lib/swr";
+import { EmailIcon } from "@chakra-ui/icons";
+
 function AboutUs() {
   const [t, i18n] = useTranslation();
+
+  const {
+    data: aboutUsResponse,
+    isLoading: aboutUsIsLoading,
+    error: aboutUsError,
+  } = useGetAboutUs();
+
+  const {
+    name,
+    description,
+    address,
+    phone_1,
+    phone_2,
+    email_1,
+    email_2,
+    latitude,
+    longitude,
+  } = aboutUsResponse?.data?.attributes;
 
   const {
     homePageDetails,
     isHomePageDetailsLoading,
     isHomePageDetailsValidating,
   } = useGetHomePageDetails();
-  if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+  if (
+    isHomePageDetailsLoading ||
+    isHomePageDetailsValidating ||
+    aboutUsIsLoading
+  ) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
@@ -32,19 +57,41 @@ function AboutUs() {
       </div>
 
       <div className="w-full lg:px-10 px-4 grid-cols-1 grid lg:grid-cols-[7fr_5fr] gap-x-8 gap-y-12 my-20 place-items-center">
-        <div className="max-lg:order-2">
+        <div className=" max-lg:order-2">
           <p className="text-5xl lg:text-6xl font-[iranyekan400] text-slate-900 leading-[4.2rem]">
-            {t("about-us.text-1")}
+            {name}
           </p>
-
           <p className="text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-            {t("about-us.text-2")}
+            {description}
           </p>
+          {email_1 !== name && (
+            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
+              <EmailIcon /> <span>{email_1}</span>
+            </p>
+          )}
 
-          <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-            {/*    TODO:Add dynamic Address field    */}
-            <MapPin /> <span>Address Field</span>
-          </p>
+          {email_2 !== null && (
+            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
+              <EmailIcon /> <span>{email_2}</span>
+            </p>
+          )}
+
+          {phone_1 !== null && (
+            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
+              <PhoneIcon /> <span>{phone_1}</span>
+            </p>
+          )}
+
+          {phone_2 !== null && (
+            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
+              <PhoneIcon /> <span>{phone_2}</span>
+            </p>
+          )}
+          {address !== null && (
+            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
+              <MapPin /> <span>{address}</span>
+            </p>
+          )}
 
           {/* <div className="mt-9">
             <AwardsAccordion />
@@ -55,12 +102,12 @@ function AboutUs() {
           loading="lazy"
           alt=""
           src={getBaseUrl() + "/assets/images/img-4.jpg"}
-          className="w-full h-auto rounded-sm max-lg:max-h-[33rem] max-lg:w-auto max-lg:order-1"
+          className="w-full h-auto object-cover max-h-[33rem] rounded-sm max-lg:max-h-[33rem] max-lg:w-auto max-lg:order-1"
         />
       </div>
 
       <div>
-        <Map position={[35.6682085, 51.3744135]} />
+        <Map position={[latitude, longitude]} />
       </div>
 
       {/*<WhyChooseUs*/}
