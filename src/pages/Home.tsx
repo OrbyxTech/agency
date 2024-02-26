@@ -71,7 +71,7 @@ function Home() {
       />
 
       {homePageDetails.data.attributes.showAboutUsSection ? (
-        <motion.div ref={aboutUsRef} id="about-us-section">
+        <motion.div ref={aboutUsRef} id="about-us-section" className="overflow-x-hidden">
           <AboutUs_1
             title={homePageDetails.data.attributes.aboutUs__title}
             text={homePageDetails.data.attributes.aboutUs__text}

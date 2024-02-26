@@ -9,10 +9,10 @@ export interface Data {
 export interface Attributes {
   name: string;
   description: string;
-  phone_1: string;
-  phone_2: string;
-  email_1: string;
-  email_2?: null;
+  phone_1: string | null;
+  phone_2: string | null;
+  email_1: string | null;
+  email_2: string | null;
   latitude: number;
   longitude: number;
   address: string;
@@ -29,4 +29,4 @@ export interface SocialsEntity {
 export interface Icon {
   data?: null;
 }
-export interface Meta {}
+export interface Meta { }

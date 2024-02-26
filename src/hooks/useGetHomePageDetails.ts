@@ -11,7 +11,7 @@ const useGetHomePageDetails = () => {
         {
             shouldRetryOnError: false,
             revalidateOnFocus: false,
-            errorRetryCount: 0
+            errorRetryCount: 0,
         }
     )
 
