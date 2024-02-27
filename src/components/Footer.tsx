@@ -1,25 +1,33 @@
+import { HashLink } from "react-router-hash-link";
+// import Logo from "./Logo";
+import { useTranslation } from "react-i18next";
 
-import { HashLink } from 'react-router-hash-link';
-import Logo from "./Logo"
-import { useTranslation } from "react-i18next"
+import { useGetFooter } from "../lib/swr";
 
 function Footer() {
-    const [t] = useTranslation()    
+  const [t] = useTranslation();
+  const { data: footerResponse, isLoading: footerIsLoading } = useGetFooter();
 
-    return (
-        <footer className="bg-black/90">
-            <div className="mx-auto max-w-screen-xl space-y-12 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+  if (footerIsLoading) {
+    return <div>Loading</div>;
+  }
 
-                {/* links */}
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-[35%_1fr] gap-y-20">
-
-                    <div>
-                        <div>
-                            <Logo />
-                        </div>
-                        <p className="mt-4 w-full lg:max-w-sm text-sm text-gray-300/95 leading-6 font-[iranyekan400]">
-                            این شرکت با داشتن کادر مجرب و دانش فنی روز و با توجه به ارزیابی بازار قطعات و محصولات صنعتی از سال 1380 شروع به تولید قطعات صنعتی نموده است و در تمامی سالها با توجه به ارزش مداری در جهت تولید مرغوب و رضایت مشتری ادامه فعالیت داده است .و در سالهای اخیر با توجه به سیاست جدید اقدام به شروع عملیات حرارتی قطعات و ماشین کاری آنها نموده و شرایط را برای تولید قطعات به صورت کامل مهیا نموده است .همچنین این شرکت با داشتن سه خط فورج و خط عملیات حرارتی با کوره های پیوسته و حمام نمک و واحد قالبسازی سعی در انجام همه امور مورد نیاز خود در یک مجموعه کاری به صورت کامل را دارد.                        </p>
-                        {/* <ul className="mt-8 flex gap-6">
+  return (
+    <footer className="bg-black/90">
+      <div className="mx-auto max-w-screen-xl space-y-12 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+        {/* links */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[35%_1fr] gap-y-20">
+          <div>
+            <div>
+              {/* <Logo /> */}
+              <h2 className="text-xl font-bold text-gray-300/95 ">
+                {footerResponse.data.attributes.title}
+              </h2>
+            </div>
+            <p className="mt-4 w-full lg:max-w-sm text-sm text-gray-300/95 leading-6 font-[iranyekan400]">
+              {footerResponse.data.attributes.text}
+            </p>
+            {/* <ul className="mt-8 flex gap-6">
                             <li>
                                 <a
                                     href="/"
@@ -127,10 +135,10 @@ function Footer() {
                                 </a>
                             </li>
                         </ul> */}
-                    </div>
+          </div>
 
-                    <div className="grid grid-cols-2 max-sm:gap-y-12 gap-8 sm:grid-cols-3">
-                        {/* <div>
+          <div className="grid grid-cols-2 max-sm:gap-y-12 gap-8 sm:grid-cols-3">
+            {/* <div>
                             <p className="font-medium text-gray-100 text-xl">Contact</p>
                             <ul className="mt-6 space-y-4 text-sm">
                                 <li>
@@ -198,37 +206,38 @@ function Footer() {
                             </ul>
                         </div> */}
 
-                        {
-                            (():any => t("footer.items"))()?.map(item => (
-                                <div key={item.id}>
-                                    <p className="font-medium text-gray-100 text-xl">{item.title}</p>
-                                    <ul className="mt-6 space-y-4 text-sm">
-                                        {
-                                            item.items?.map(item => (
-                                                <li key={item.id}>
-                                                    <HashLink to={item.link} className="text-gray-300/95 font-[iranyekan300] transition hover:opacity-75">
-                                                        {item.title}
-                                                    </HashLink>
-                                                </li>
-                                            ))
-                                        }
-                                    </ul>
-                                </div>
-                            ))
-                        }
-
-
-                    </div>
-
-                </div>
-
-                <p className="text-xs text-gray-400">
-                    © 2023. <span className="text-gray-300">{import.meta.env.VITE_COMPANY_NAME}</span>. All rights reserved.
+            {footerResponse.data.attributes.Links.map((link) => (
+              <div key={link.id}>
+                <p className="font-medium text-gray-100 text-xl">
+                  {link.title}
                 </p>
+                <ul className="mt-6 space-y-4 text-sm">
+                  {link.links?.map((link) => (
+                    <li key={link.id}>
+                      <HashLink
+                        to={link.link}
+                        className="text-gray-300/95 font-[iranyekan300] transition hover:opacity-75"
+                      >
+                        {link.title}
+                      </HashLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
 
-            </div>
-        </footer>
-    )
+        <p className="text-xs text-gray-400">
+          © 2023.{" "}
+          <span className="text-gray-300">
+            {import.meta.env.VITE_COMPANY_NAME}
+          </span>
+          . All rights reserved.
+        </p>
+      </div>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

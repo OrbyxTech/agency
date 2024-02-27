@@ -1,6 +1,10 @@
 import useSWR from "swr";
 
-import { getAboutUs, getOurTeam } from "../axios/request-handlers.ts";
+import {
+  getAboutUs,
+  getFooter,
+  getOurTeam,
+} from "../axios/request-handlers.ts";
 
 export const useGetAboutUs = () => {
   const { data, isLoading, isValidating, error, mutate } = useSWR(
@@ -18,6 +22,18 @@ export const useGetOurTeam = () => {
   const { data, isLoading, isValidating, error, mutate } = useSWR(
     "our-team",
     getOurTeam,
+    {
+      revalidateOnFocus: false,
+    }
+  );
+
+  return { data, isLoading, isValidating, error, mutate };
+};
+
+export const useGetFooter = () => {
+  const { data, isLoading, isValidating, error, mutate } = useSWR(
+    "footer",
+    getFooter,
     {
       revalidateOnFocus: false,
     }

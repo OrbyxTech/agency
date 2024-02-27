@@ -121,3 +121,33 @@ export interface OurTeamThumbnailOrMediumOrSmallOrLarge1 {
   url: string;
 }
 export interface OurTeamMeta {}
+
+/* -------------------------------------------------------------------------- */
+/*                                FOOTER TYPES                                */
+/* -------------------------------------------------------------------------- */
+export interface FooterResponse {
+  data: FooterData;
+  meta: FooterMeta;
+}
+export interface FooterData {
+  id: number;
+  attributes: FooterAttributes;
+}
+export interface FooterAttributes {
+  title: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  Links?: FooterLinksEntity[] | null;
+}
+export interface FooterLinksEntity {
+  id: number;
+  title: string;
+  links?: FooterLinksEntity1[] | null;
+}
+export interface FooterLinksEntity1 {
+  id: number;
+  title: string;
+  link: string;
+}
+export interface FooterMeta {}
