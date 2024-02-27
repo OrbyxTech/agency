@@ -39,7 +39,7 @@ function Home() {
   const {
     homePageDetails,
     isHomePageDetailsLoading,
-    isHomePageDetailsValidating,
+
     homePageDetailsError,
   } = useGetHomePageDetails();
 
@@ -51,7 +51,7 @@ function Home() {
     }
   }, []);
 
-  if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+  if (isHomePageDetailsLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
@@ -71,7 +71,11 @@ function Home() {
       />
 
       {homePageDetails.data.attributes.showAboutUsSection ? (
-        <motion.div ref={aboutUsRef} id="about-us-section" className="overflow-x-hidden">
+        <motion.div
+          ref={aboutUsRef}
+          id="about-us-section"
+          className="overflow-x-hidden"
+        >
           <AboutUs_1
             title={homePageDetails.data.attributes.aboutUs__title}
             text={homePageDetails.data.attributes.aboutUs__text}

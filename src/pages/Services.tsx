@@ -8,12 +8,8 @@ import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
 function Services() {
   const [t] = useTranslation();
 
-  const {
-    homePageDetails,
-    isHomePageDetailsLoading,
-    isHomePageDetailsValidating,
-  } = useGetHomePageDetails();
-  if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+  const { homePageDetails, isHomePageDetailsLoading } = useGetHomePageDetails();
+  if (isHomePageDetailsLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>

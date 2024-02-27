@@ -3,7 +3,7 @@ import OurTeamSection from "../components/OurTeamSection";
 // import AwardsAccordion from "../components/AwardsAccordion";
 import Banner_1 from "../components/Banner_1";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
-import { useGetOurTeam } from "../lib/swr";
+import { useGetOurTeam } from "../lib/react-query";
 
 function OurTeam() {
   const [t] = useTranslation();
@@ -11,16 +11,8 @@ function OurTeam() {
   const { data: ourTeamResponse, isLoading: ourTeamIsLoading } =
     useGetOurTeam();
 
-  const {
-    homePageDetails,
-    isHomePageDetailsLoading,
-    isHomePageDetailsValidating,
-  } = useGetHomePageDetails();
-  if (
-    isHomePageDetailsLoading ||
-    isHomePageDetailsValidating ||
-    ourTeamIsLoading
-  ) {
+  const { homePageDetails, isHomePageDetailsLoading } = useGetHomePageDetails();
+  if (isHomePageDetailsLoading || ourTeamIsLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>

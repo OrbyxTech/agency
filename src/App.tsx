@@ -1,23 +1,25 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ApplicationLayout from "./layouts/ApplicationLayout";
+import { useTranslation } from "react-i18next";
+import { ChakraProvider } from "@chakra-ui/react";
+import NotFound from "./pages/NotFound";
+import AboutUs from "./pages/AboutUs";
+import { ApplicationRoutes } from "./routes";
+import ContactUs from "./pages/ContactUs";
+import OurTeam from "./pages/OurTeam";
+import Services from "./pages/Services";
+import Projects from "./pages/Projects";
+import ProjectDetails from "./pages/ProjectDetails";
 
-import { Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import ApplicationLayout from "./layouts/ApplicationLayout"
-import { useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { ChakraProvider } from "@chakra-ui/react"
-import NotFound from "./pages/NotFound"
-import AboutUs from "./pages/AboutUs"
-import { ApplicationRoutes } from "./routes"
-import ContactUs from "./pages/ContactUs"
-import OurTeam from "./pages/OurTeam"
-import Services from "./pages/Services"
-import Projects from "./pages/Projects"
-import ProjectDetails from "./pages/ProjectDetails"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [_, i18n] = useTranslation()
+  const [_, i18n] = useTranslation();
 
-  // set theme 
+  // set theme
   // useEffect(
   //   () => {
   //     const link = document.createElement("link")
@@ -35,26 +37,47 @@ function App() {
   //   },
   //   [i18n.language]
   // )
-  
-
 
   return (
-    <ChakraProvider>
-      <ApplicationLayout>
-        <Routes>
-          <Route path={ApplicationRoutes.pages.home} element={<Home />} />
-          <Route path={ApplicationRoutes.pages.blog.blog} element={<p>hello world from blog</p>} />
-          <Route path={ApplicationRoutes.pages.contact} element={<ContactUs />} />
-          <Route path={ApplicationRoutes.pages.company["about-us"]} element={<AboutUs />} />
-          <Route path={ApplicationRoutes.pages.company["our-team"]} element={<OurTeam />} />
-          <Route path={ApplicationRoutes.pages.company.services} element={<Services />} />
-          <Route path={ApplicationRoutes.pages.work.project} element={<Projects />} />
-          <Route path={ApplicationRoutes.pages.work["project-details"]} element={<ProjectDetails />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </ApplicationLayout>
-    </ChakraProvider>
-  )
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <ApplicationLayout>
+          <Routes>
+            <Route path={ApplicationRoutes.pages.home} element={<Home />} />
+            <Route
+              path={ApplicationRoutes.pages.blog.blog}
+              element={<p>hello world from blog</p>}
+            />
+            <Route
+              path={ApplicationRoutes.pages.contact}
+              element={<ContactUs />}
+            />
+            <Route
+              path={ApplicationRoutes.pages.company["about-us"]}
+              element={<AboutUs />}
+            />
+            <Route
+              path={ApplicationRoutes.pages.company["our-team"]}
+              element={<OurTeam />}
+            />
+            <Route
+              path={ApplicationRoutes.pages.company.services}
+              element={<Services />}
+            />
+            <Route
+              path={ApplicationRoutes.pages.work.project}
+              element={<Projects />}
+            />
+            <Route
+              path={ApplicationRoutes.pages.work["project-details"]}
+              element={<ProjectDetails />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ApplicationLayout>
+      </ChakraProvider>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

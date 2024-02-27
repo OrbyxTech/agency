@@ -2,7 +2,7 @@ import { HashLink } from "react-router-hash-link";
 // import Logo from "./Logo";
 import { useTranslation } from "react-i18next";
 
-import { useGetFooter } from "../lib/swr";
+import { useGetFooter } from "../lib/react-query";
 
 function Footer() {
   const [t] = useTranslation();

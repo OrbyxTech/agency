@@ -1,27 +1,18 @@
-
-import useSWR from "swr"
-import getHomePagedetails from "../utils/http/getHomePagedetails"
+import { useQuery } from "@tanstack/react-query";
+import getHomePagedetails from "../utils/http/getHomePagedetails";
 
 const useGetHomePageDetails = () => {
-    const {
-        data, error, isLoading, isValidating, mutate
-    } = useSWR(
-        "/",
-        async () => await getHomePagedetails(),
-        {
-            shouldRetryOnError: false,
-            revalidateOnFocus: false,
-            errorRetryCount: 0,
-        }
-    )
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["home"],
+    queryFn: getHomePagedetails,
+    refetchOnWindowFocus: false,
+  });
 
-    return {
-        homePageDetails: data,
-        homePageDetailsError: error,
-        isHomePageDetailsLoading: isLoading,
-        isHomePageDetailsValidating: isValidating,
-        mutateHomePageDetails: mutate
-    }
-}
+  return {
+    homePageDetails: data,
+    homePageDetailsError: error,
+    isHomePageDetailsLoading: isLoading,
+  };
+};
 
-export default useGetHomePageDetails
+export default useGetHomePageDetails;

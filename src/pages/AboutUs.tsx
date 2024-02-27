@@ -7,7 +7,7 @@ import getBaseUrl from "../utils/base-url";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
 
 import { MapPin, PhoneIcon, MailIcon } from "lucide-react";
-import { useGetAboutUs } from "../lib/swr";
+import { useGetAboutUs } from "../lib/react-query/index.ts";
 import Map from "../components/shared/Map.tsx";
 import DescStats from "../components/AboutUs/DescStats.tsx";
 import Social from "../components/shared/Social.tsx";
@@ -21,16 +21,8 @@ function AboutUs() {
     // error: aboutUsError,
   } = useGetAboutUs();
 
-  const {
-    homePageDetails,
-    isHomePageDetailsLoading,
-    isHomePageDetailsValidating,
-  } = useGetHomePageDetails();
-  if (
-    isHomePageDetailsLoading ||
-    isHomePageDetailsValidating ||
-    aboutUsIsLoading
-  ) {
+  const { homePageDetails, isHomePageDetailsLoading } = useGetHomePageDetails();
+  if (isHomePageDetailsLoading || aboutUsIsLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
