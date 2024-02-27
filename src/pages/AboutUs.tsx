@@ -6,10 +6,11 @@ import Banner_1 from "../components/Banner_1";
 import getBaseUrl from "../utils/base-url";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
 
-import { MapPin, PhoneIcon } from "lucide-react";
-import Map from "../components/shared/Map.tsx";
+import { MapPin, PhoneIcon, MailIcon } from "lucide-react";
 import { useGetAboutUs } from "../lib/swr";
-import { EmailIcon } from "@chakra-ui/icons";
+import Map from "../components/shared/Map.tsx";
+import DescStats from "../components/AboutUs/DescStats.tsx";
+import Social from "../components/shared/Social.tsx";
 
 function AboutUs() {
   const [t, i18n] = useTranslation();
@@ -17,20 +18,8 @@ function AboutUs() {
   const {
     data: aboutUsResponse,
     isLoading: aboutUsIsLoading,
-    error: aboutUsError,
+    // error: aboutUsError,
   } = useGetAboutUs();
-
-  const {
-    name,
-    description,
-    address,
-    phone_1,
-    phone_2,
-    email_1,
-    email_2,
-    latitude,
-    longitude,
-  } = aboutUsResponse?.data?.attributes;
 
   const {
     homePageDetails,
@@ -59,40 +48,60 @@ function AboutUs() {
       <div className="w-full lg:px-10 px-4 grid-cols-1 grid lg:grid-cols-[7fr_5fr] gap-x-8 gap-y-12 my-20 place-items-center">
         <div className=" max-lg:order-2">
           <p className="text-5xl lg:text-6xl font-[iranyekan400] text-slate-900 leading-[4.2rem]">
-            {name}
+            {aboutUsResponse?.data?.attributes.name}
           </p>
           <p className="text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-            {description}
+            {aboutUsResponse?.data?.attributes.description}
           </p>
-          {email_1 !== name && (
-            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-              <EmailIcon /> <span>{email_1}</span>
-            </p>
-          )}
 
-          {email_2 !== null && (
-            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-              <EmailIcon /> <span>{email_2}</span>
-            </p>
-          )}
+          <div className="space-y-2 mt-4">
+            {aboutUsResponse?.data?.attributes.email_1 !== null && (
+              <DescStats
+                title={aboutUsResponse.data.attributes.email_1}
+                icon={<MailIcon />}
+              />
+            )}
 
-          {phone_1 !== null && (
-            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-              <PhoneIcon /> <span>{phone_1}</span>
-            </p>
-          )}
+            {aboutUsResponse?.data?.attributes.email_2 !== null && (
+              <DescStats
+                title={aboutUsResponse.data.attributes.email_2}
+                icon={<MailIcon />}
+              />
+            )}
 
-          {phone_2 !== null && (
-            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-              <PhoneIcon /> <span>{phone_2}</span>
-            </p>
-          )}
-          {address !== null && (
-            <p className="flex items-center gap-2 text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-              <MapPin /> <span>{address}</span>
-            </p>
-          )}
+            {aboutUsResponse?.data?.attributes.phone_1 !== null && (
+              <DescStats
+                title={aboutUsResponse.data.attributes.phone_1}
+                icon={<PhoneIcon />}
+              />
+            )}
 
+            {aboutUsResponse?.data?.attributes.phone_2 !== null && (
+              <DescStats
+                title={aboutUsResponse.data.attributes.phone_2}
+                icon={<PhoneIcon />}
+              />
+            )}
+            {aboutUsResponse?.data?.attributes.address !== null && (
+              <DescStats
+                title={aboutUsResponse.data.attributes.address}
+                icon={<MapPin />}
+              />
+            )}
+          </div>
+
+          {/* Socials */}
+          <div className="flex items-center gap-2 mt-4">
+            {aboutUsResponse.data.attributes.socials.length > 0 &&
+              aboutUsResponse.data.attributes.socials.map((social) => (
+                <Social
+                  key={`socials-about-${social.id}`}
+                  title={social.title}
+                  link={social.link}
+                  icon={social.icon.data}
+                />
+              ))}
+          </div>
           {/* <div className="mt-9">
             <AwardsAccordion />
           </div> */}
@@ -107,7 +116,12 @@ function AboutUs() {
       </div>
 
       <div>
-        <Map position={[latitude, longitude]} />
+        <Map
+          position={[
+            aboutUsResponse?.data?.attributes.latitude,
+            aboutUsResponse?.data?.attributes.longitude,
+          ]}
+        />
       </div>
 
       {/*<WhyChooseUs*/}
