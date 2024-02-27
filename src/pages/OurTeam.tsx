@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import OurTeamSection from "../components/OurTeamSection";
-import AwardsAccordion from "../components/AwardsAccordion";
+// import AwardsAccordion from "../components/AwardsAccordion";
 import Banner_1 from "../components/Banner_1";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
 import { useGetOurTeam } from "../lib/swr";
@@ -44,7 +44,7 @@ function OurTeam() {
         showTopSection={false}
       />
 
-      <div className="w-full lg:px-10 px-4 grid-cols-1 grid lg:grid-cols-[13fr_11fr] gap-x-8 gap-y-12 my-20 mt-28 place-items-center max-lg:max-w-4xl max-lg:mx-auto">
+      {/* <div className="w-full lg:px-10 px-4 grid-cols-1 grid lg:grid-cols-[13fr_11fr] gap-x-8 gap-y-12 my-20 mt-28 place-items-center max-lg:max-w-4xl max-lg:mx-auto">
         <div>
           <p className="text-5xl font-[iranyekan300] text-slate-900 leading-[3.8rem]">
             {t("our-team.text-1")}
@@ -60,7 +60,7 @@ function OurTeam() {
         </div>
 
         <AwardsAccordion />
-      </div>
+      </div> */}
 
       <Banner_1
         text={homePageDetails.data.attributes.cta1__title}

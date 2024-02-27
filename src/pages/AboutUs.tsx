@@ -98,7 +98,7 @@ function AboutUs() {
                   key={`socials-about-${social.id}`}
                   title={social.title}
                   link={social.link}
-                  icon={social.icon.data}
+                  icon={social.icon?.data?.attributes?.url}
                 />
               ))}
           </div>

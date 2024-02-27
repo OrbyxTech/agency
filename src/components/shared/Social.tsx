@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { IMAGE_BASE_URL } from "../../constants";
 
 interface Props {
   title: string;
   link: string;
-  icon: ReactNode;
+  icon: string;
 }
 
 const Social = ({ title, link, icon }: Props) => {
@@ -11,7 +11,7 @@ const Social = ({ title, link, icon }: Props) => {
     <a href={link} target="_blank">
       <img
         className="object-cover w-8 h-8"
-        src="/assets/icons/icons8-telegram-50.png"
+        src={IMAGE_BASE_URL + icon}
         alt={title}
       />
     </a>

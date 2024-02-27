@@ -12,16 +12,17 @@ export interface AboutUsData {
 export interface AboutUsAttributes {
   name: string;
   description: string;
-  phone_1: string | null;
-  phone_2: string | null;
-  email_1: string | null;
-  email_2: string | null;
+  phone_1: string;
+  phone_2: string;
+  email_1: string;
+  email_2?: null;
   latitude: number;
   longitude: number;
   address: string;
   createdAt: string;
   updatedAt: string;
   socials?: AboutUsSocialsEntity[] | null;
+  image: AboutUsImage;
 }
 export interface AboutUsSocialsEntity {
   id: number;
@@ -30,7 +31,75 @@ export interface AboutUsSocialsEntity {
   icon: AboutUsIcon;
 }
 export interface AboutUsIcon {
-  data?: null;
+  data?: AboutUsData1 | null;
+}
+export interface AboutUsData1 {
+  id: number;
+  attributes: AboutUsAttributes1;
+}
+export interface AboutUsAttributes1 {
+  name: string;
+  alternativeText?: null;
+  caption?: null;
+  width: number;
+  height: number;
+  formats?: AboutUsFormats | null;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: null;
+  provider: string;
+  provider_metadata?: null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface AboutUsFormats {
+  thumbnail: AboutUsThumbnailOrSmallOrMediumOrLarge;
+  small: AboutUsThumbnailOrSmallOrMediumOrLarge;
+}
+export interface AboutUsThumbnailOrSmallOrMediumOrLarge {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path?: null;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+export interface AboutUsImage {
+  data: AboutUsData2;
+}
+export interface AboutUsData2 {
+  id: number;
+  attributes: AboutUsAttributes2;
+}
+export interface AboutUsAttributes2 {
+  name: string;
+  alternativeText?: null;
+  caption?: null;
+  width: number;
+  height: number;
+  formats: AboutUsFormats1;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: null;
+  provider: string;
+  provider_metadata?: null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface AboutUsFormats1 {
+  thumbnail: AboutUsThumbnailOrSmallOrMediumOrLarge;
+  medium: AboutUsThumbnailOrSmallOrMediumOrLarge;
+  small: AboutUsThumbnailOrSmallOrMediumOrLarge;
+  large: AboutUsThumbnailOrSmallOrMediumOrLarge;
 }
 export interface AboutUsMeta {}
 
