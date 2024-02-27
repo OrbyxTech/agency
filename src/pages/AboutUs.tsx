@@ -62,17 +62,21 @@ function AboutUs() {
             )}
 
             {aboutUsResponse?.data?.attributes.phone_1 !== null && (
-              <DescStats
-                title={aboutUsResponse.data.attributes.phone_1}
-                icon={<PhoneIcon />}
-              />
+              <a href={"tel:" + aboutUsResponse.data.attributes.phone_1}>
+                <DescStats
+                  title={aboutUsResponse.data.attributes.phone_1}
+                  icon={<PhoneIcon />}
+                />
+              </a>
             )}
 
             {aboutUsResponse?.data?.attributes.phone_2 !== null && (
-              <DescStats
-                title={aboutUsResponse.data.attributes.phone_2}
-                icon={<PhoneIcon />}
-              />
+              <a href={"tel:" + aboutUsResponse.data.attributes.phone_2}>
+                <DescStats
+                  title={aboutUsResponse.data.attributes.phone_2}
+                  icon={<PhoneIcon />}
+                />
+              </a>
             )}
             {aboutUsResponse?.data?.attributes.address !== null && (
               <DescStats
@@ -83,7 +87,7 @@ function AboutUs() {
           </div>
 
           {/* Socials */}
-          <div className="flex items-center gap-2 mt-4">
+          <div className="flex items-center gap-3.5 mt-4">
             {aboutUsResponse.data.attributes.socials.length > 0 &&
               aboutUsResponse.data.attributes.socials.map((social) => (
                 <Social
