@@ -3,16 +3,24 @@ import OurTeamSection from "../components/OurTeamSection";
 import AwardsAccordion from "../components/AwardsAccordion";
 import Banner_1 from "../components/Banner_1";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
+import { useGetOurTeam } from "../lib/swr";
 
 function OurTeam() {
   const [t] = useTranslation();
+
+  const { data: ourTeamResponse, isLoading: ourTeamIsLoading } =
+    useGetOurTeam();
 
   const {
     homePageDetails,
     isHomePageDetailsLoading,
     isHomePageDetailsValidating,
   } = useGetHomePageDetails();
-  if (isHomePageDetailsLoading || isHomePageDetailsValidating) {
+  if (
+    isHomePageDetailsLoading ||
+    isHomePageDetailsValidating ||
+    ourTeamIsLoading
+  ) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
@@ -29,7 +37,7 @@ function OurTeam() {
 
       <OurTeamSection
         className="mt-28 px-4 lg:px-10"
-        teamMembers={t("home.our-team.items")}
+        teamMembers={ourTeamResponse.data.attributes.members}
         readMoreButtonText={""}
         title={""}
         subtitle={""}
