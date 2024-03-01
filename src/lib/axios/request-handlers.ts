@@ -1,6 +1,11 @@
 import Axios from "./index.ts";
 
-import { AboutUsResponse, FooterResponse, OurTeamResponse } from "./types.ts";
+import {
+  AboutUsResponse,
+  ArticleResponse,
+  FooterResponse,
+  OurTeamResponse,
+} from "./types.ts";
 
 export const getAboutUs = async (): Promise<AboutUsResponse> => {
   try {
@@ -30,6 +35,22 @@ export const getFooter = async (): Promise<FooterResponse> => {
   try {
     const res = await Axios.get<FooterResponse>(
       "/api/footer?populate[0]=Links&populate[1]=Links.links"
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/* -------------------------------------------------------------------------- */
+/*                              ARTICLE REQUESTS                              */
+/* -------------------------------------------------------------------------- */
+
+export const getArticles = async (): Promise<ArticleResponse> => {
+  try {
+    const res = await Axios.get<ArticleResponse>(
+      "/api/articles?fields[0]=id&fields[1]=name&fields[2]=description&populate[3]=thumbnail"
     );
     const data = res.data;
     return data;

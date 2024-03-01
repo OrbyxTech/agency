@@ -20,8 +20,6 @@ function OurTeamSection({
   title,
   showTopSection = true,
 }: Props) {
-  console.log(teamMembers);
-
   return (
     <div className={"w-full " + className}>
       {showTopSection ? (

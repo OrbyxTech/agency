@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import {
   getAboutUs,
+  getArticles,
   getFooter,
   getOurTeam,
 } from "../axios/request-handlers.ts";
@@ -31,6 +32,16 @@ export const useGetFooter = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QUERY_KEYS.FOOTER],
     queryFn: getFooter,
+    refetchOnWindowFocus: false,
+  });
+
+  return { data, isLoading, error };
+};
+
+export const useGetArticles = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: [QUERY_KEYS.ARTICLES],
+    queryFn: getArticles,
     refetchOnWindowFocus: false,
   });
 

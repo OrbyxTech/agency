@@ -11,6 +11,7 @@ import OurTeam from "./pages/OurTeam";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
+import Blog from "./pages/Blog";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -46,7 +47,7 @@ function App() {
             <Route path={ApplicationRoutes.pages.home} element={<Home />} />
             <Route
               path={ApplicationRoutes.pages.blog.blog}
-              element={<p>hello world from blog</p>}
+              element={<Blog />}
             />
             <Route
               path={ApplicationRoutes.pages.contact}

@@ -220,3 +220,69 @@ export interface FooterLinksEntity1 {
   link: string;
 }
 export interface FooterMeta {}
+
+/* -------------------------------------------------------------------------- */
+/*                                ARTICLE TYPES                               */
+/* -------------------------------------------------------------------------- */
+export interface ArticleResponse {
+  data?: ArticleDataEntity[] | null;
+  meta: ArticleMeta;
+}
+export interface ArticleDataEntity {
+  id: number;
+  attributes: ArticleAttributes;
+}
+export interface ArticleAttributes {
+  name: string;
+  description: string;
+  thumbnail: ArticleThumbnail;
+}
+export interface ArticleThumbnail {
+  data: ArticleData;
+}
+export interface ArticleData {
+  id: number;
+  attributes: ArticleAttributes1;
+}
+export interface ArticleAttributes1 {
+  name: string;
+  alternativeText?: null;
+  caption?: null;
+  width: number;
+  height: number;
+  formats: ArticleFormats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: null;
+  provider: string;
+  provider_metadata?: null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface ArticleFormats {
+  thumbnail: ArticleThumbnailOrSmall;
+  small: ArticleThumbnailOrSmall;
+}
+export interface ArticleThumbnailOrSmall {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path?: null;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+export interface ArticleMeta {
+  pagination: ArticlePagination;
+}
+export interface ArticlePagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
