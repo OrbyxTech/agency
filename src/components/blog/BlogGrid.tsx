@@ -1,7 +1,11 @@
 import { useGetArticles } from "../../lib/react-query";
 import BlogGridItem from "./BlogGridItem";
 
-const BlogGrid = () => {
+interface Props {
+  className?: string;
+}
+
+const BlogGrid = ({ className }: Props) => {
   const { data, isLoading } = useGetArticles();
 
   if (isLoading) {
@@ -13,7 +17,9 @@ const BlogGrid = () => {
   }
 
   return (
-    <div className="my-20 grid grid-cols-1 sm:grid-cols-2 max-lg:gap-y-12 lg:grid-cols-3 gap-6 place-items-center">
+    <div
+      className={`my-20 grid grid-cols-1 sm:grid-cols-2 max-lg:gap-y-12 lg:grid-cols-3 gap-6 place-items-center ${className}`}
+    >
       {data.data.map((article) => (
         <BlogGridItem key={`article-${article.id}`} article={article} />
       ))}
