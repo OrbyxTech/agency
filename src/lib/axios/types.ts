@@ -286,3 +286,109 @@ export interface ArticlePagination {
   pageCount: number;
   total: number;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                            SINGLE ARTICLE TYPES                            */
+/* -------------------------------------------------------------------------- */
+export interface SingleArticeResponse {
+  data: SingleArticeData;
+  meta: SingleArticeMeta;
+}
+export interface SingleArticeData {
+  id: number;
+  attributes: SingleArticeAttributes;
+}
+export interface SingleArticeAttributes {
+  name: string;
+  description: string;
+  keywords: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  author: SingleArticeAuthor;
+  thumbnail: SingleArticeThumbnail;
+  cover: SingleArticeCover;
+}
+export interface SingleArticeAuthor {
+  data: SingleArticeData1;
+}
+export interface SingleArticeData1 {
+  id: number;
+  attributes: SingleArticeAttributes1;
+}
+export interface SingleArticeAttributes1 {
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
+  updatedAt: string;
+  user_role: string;
+}
+export interface SingleArticeThumbnail {
+  data: SingleArticeData2;
+}
+export interface SingleArticeData2 {
+  id: number;
+  attributes: SingleArticeAttributes2;
+}
+export interface SingleArticeAttributes2 {
+  name: string;
+  alternativeText?: null;
+  caption?: null;
+  width: number;
+  height: number;
+  formats: SingleArticeFormats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: null;
+  provider: string;
+  provider_metadata?: null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface SingleArticeFormats {
+  thumbnail: SingleArticeThumbnailOrSmall;
+  small: SingleArticeThumbnailOrSmall;
+}
+export interface SingleArticeThumbnailOrSmall {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path?: null;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+export interface SingleArticeCover {
+  data: SingleArticeData3;
+}
+export interface SingleArticeData3 {
+  id: number;
+  attributes: SingleArticeAttributes3;
+}
+export interface SingleArticeAttributes3 {
+  name: string;
+  alternativeText?: null;
+  caption?: null;
+  width: number;
+  height: number;
+  formats?: null;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: null;
+  provider: string;
+  provider_metadata?: null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface SingleArticeMeta {}

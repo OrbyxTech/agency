@@ -5,6 +5,7 @@ import {
   getArticles,
   getFooter,
   getOurTeam,
+  getSingleArticle,
 } from "../axios/request-handlers.ts";
 import { QUERY_KEYS } from "./keys.ts";
 
@@ -42,6 +43,16 @@ export const useGetArticles = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QUERY_KEYS.ARTICLES],
     queryFn: getArticles,
+    refetchOnWindowFocus: false,
+  });
+
+  return { data, isLoading, error };
+};
+
+export const useGetSingleArticle = (id: number | string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: [QUERY_KEYS.ARTICLES, id],
+    queryFn: () => getSingleArticle(id),
     refetchOnWindowFocus: false,
   });
 

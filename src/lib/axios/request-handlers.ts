@@ -5,6 +5,7 @@ import {
   ArticleResponse,
   FooterResponse,
   OurTeamResponse,
+  SingleArticeResponse,
 } from "./types.ts";
 
 export const getAboutUs = async (): Promise<AboutUsResponse> => {
@@ -51,6 +52,20 @@ export const getArticles = async (): Promise<ArticleResponse> => {
   try {
     const res = await Axios.get<ArticleResponse>(
       "/api/articles?fields[0]=id&fields[1]=name&fields[2]=description&populate[3]=thumbnail"
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSingleArticle = async (
+  id: number | string
+): Promise<SingleArticeResponse> => {
+  try {
+    const res = await Axios.get<SingleArticeResponse>(
+      `/api/articles/${id}?populate[0]=author&populate[1]=thumbnail&populate[2]=cover&populate[3]=author`
     );
     const data = res.data;
     return data;
