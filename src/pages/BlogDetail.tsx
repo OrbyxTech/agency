@@ -1,21 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useGetSingleArticle } from "../lib/react-query";
+import { useGetArticleComments, useGetSingleArticle } from "../lib/react-query";
 import { IMAGE_BASE_URL } from "../constants";
 
 import parse from "html-react-parser";
-import { stringToArray } from "../lib/utils";
+import { stringToArray, timeAgo } from "../lib/utils";
 import { Badge, Button, Textarea } from "@chakra-ui/react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import { useState } from "react";
+import Comment from "../components/blog/Comment";
 
 const BlogDetail = () => {
   const { id } = useParams();
 
   const { data, isLoading } = useGetSingleArticle(id);
+  const { data: commentsData, isLoading: commentsIsLoading } =
+    useGetArticleComments(id);
 
   const [comment, setComment] = useState("");
-
-  const keywordsArray = stringToArray(data.data.attributes.keywords, ",");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,13 +24,15 @@ const BlogDetail = () => {
     setComment("");
   };
 
-  if (isLoading) {
+  if (isLoading || commentsIsLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
       </div>
     );
   }
+
+  const keywordsArray = stringToArray(data.data.attributes.keywords, ",");
 
   return (
     <div className="my-20 p-4 w-full max-w-3xl mx-auto">
@@ -44,19 +47,27 @@ const BlogDetail = () => {
 
       <div className="mt-10 flex justify-between items-start">
         {/* Author */}
-        <div className="flex flex-col gap-2 sm:flex-row sm:justify-between">
-          <div>{data.data.attributes.author.data.attributes.username}</div>
+        <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
+          <p className="mt-2 text-black/60">
+            <span>{data.data.attributes.author.data.attributes.username}</span>
+            &nbsp;-&nbsp;
+            <span className="text-xs sm:text-sm">
+              {timeAgo(data.data.attributes.createdAt)}
+            </span>
+          </p>
         </div>
         {/* Like */}
         <div className="flex items-center gap-2 justify-end">
-          <AiOutlineLike className="w-6 h-6 cursor-pointer" />
-          <AiOutlineDislike className="w-6 h-6 cursor-pointer" />
+          <AiOutlineLike className="w-5 h-5 cursor-pointer text-black/60" />
+          <AiOutlineDislike className="w-5 h-5 cursor-pointer text-black/60" />
         </div>
       </div>
 
       {/* Title & Description */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold">{data.data.attributes.name}</h2>
+        <h2 className="text-3xl font-bold underline">
+          {data.data.attributes.name}
+        </h2>
         <p>{data.data.attributes.description}</p>
       </div>
 
@@ -87,6 +98,13 @@ const BlogDetail = () => {
             Submit
           </Button>
         </form>
+
+        {/* Comments */}
+        <div className="mt-8">
+          {commentsData.data.map((comment) => (
+            <Comment key={`comment-${comment.id}`} comment={comment} />
+          ))}
+        </div>
       </div>
     </div>
   );

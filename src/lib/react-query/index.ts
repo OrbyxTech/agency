@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import {
   getAboutUs,
+  getArticleComments,
   getArticles,
   getFooter,
   getOurTeam,
@@ -53,6 +54,16 @@ export const useGetSingleArticle = (id: number | string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QUERY_KEYS.ARTICLES, id],
     queryFn: () => getSingleArticle(id),
+    refetchOnWindowFocus: false,
+  });
+
+  return { data, isLoading, error };
+};
+
+export const useGetArticleComments = (id: number | string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: [QUERY_KEYS.COMMENTS, id],
+    queryFn: () => getArticleComments(id),
     refetchOnWindowFocus: false,
   });
 

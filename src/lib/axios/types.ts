@@ -1,9 +1,20 @@
+interface Meta {
+  pagination?: Pagination;
+}
+
+export interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                               ABOUT US TYPES                               */
 /* -------------------------------------------------------------------------- */
 export interface AboutUsResponse {
   data: AboutUsData;
-  meta: AboutUsMeta;
+  meta: Meta;
 }
 export interface AboutUsData {
   id: number;
@@ -101,14 +112,13 @@ export interface AboutUsFormats1 {
   small: AboutUsThumbnailOrSmallOrMediumOrLarge;
   large: AboutUsThumbnailOrSmallOrMediumOrLarge;
 }
-export interface AboutUsMeta {}
 
 /* -------------------------------------------------------------------------- */
 /*                               OUR TEAM TYPES                               */
 /* -------------------------------------------------------------------------- */
 export interface OurTeamResponse {
   data: OurTeamData;
-  meta: OurTeamMeta;
+  meta: Meta;
 }
 export interface OurTeamData {
   id: number;
@@ -189,14 +199,13 @@ export interface OurTeamThumbnailOrMediumOrSmallOrLarge1 {
   size: number;
   url: string;
 }
-export interface OurTeamMeta {}
 
 /* -------------------------------------------------------------------------- */
 /*                                FOOTER TYPES                                */
 /* -------------------------------------------------------------------------- */
 export interface FooterResponse {
   data: FooterData;
-  meta: FooterMeta;
+  meta: Meta;
 }
 export interface FooterData {
   id: number;
@@ -219,14 +228,13 @@ export interface FooterLinksEntity1 {
   title: string;
   link: string;
 }
-export interface FooterMeta {}
 
 /* -------------------------------------------------------------------------- */
 /*                                ARTICLE TYPES                               */
 /* -------------------------------------------------------------------------- */
 export interface ArticleResponse {
   data?: ArticleDataEntity[] | null;
-  meta: ArticleMeta;
+  meta: Meta;
 }
 export interface ArticleDataEntity {
   id: number;
@@ -277,22 +285,12 @@ export interface ArticleThumbnailOrSmall {
   size: number;
   url: string;
 }
-export interface ArticleMeta {
-  pagination: ArticlePagination;
-}
-export interface ArticlePagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
 /* -------------------------------------------------------------------------- */
 /*                            SINGLE ARTICLE TYPES                            */
 /* -------------------------------------------------------------------------- */
 export interface SingleArticeResponse {
   data: SingleArticeData;
-  meta: SingleArticeMeta;
+  meta: Meta;
 }
 export interface SingleArticeData {
   id: number;
@@ -391,4 +389,38 @@ export interface SingleArticeAttributes3 {
   createdAt: string;
   updatedAt: string;
 }
-export interface SingleArticeMeta {}
+
+/* -------------------------------------------------------------------------- */
+/*                               COMMENTS TYPES                               */
+/* -------------------------------------------------------------------------- */
+export interface ArticleCommentsResponse {
+  data: ArticleCommentsData[];
+  meta: Meta;
+}
+
+export interface ArticleCommentsData {
+  id: number;
+  attributes: ArticleCommentsAttributes;
+}
+
+export interface ArticleCommentsAttributes {
+  content: string;
+  status: string;
+  reply: string;
+  createdAt: string;
+  updatedAt: string;
+  author: ArticleCommentsAuthor;
+}
+
+export interface ArticleCommentsAuthor {
+  data: AuthorData;
+}
+
+export interface AuthorData {
+  id: number;
+  attributes: ArticleCommentsAttributes2;
+}
+
+export interface ArticleCommentsAttributes2 {
+  username: string;
+}

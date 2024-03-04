@@ -2,6 +2,7 @@ import Axios from "./index.ts";
 
 import {
   AboutUsResponse,
+  ArticleCommentsResponse,
   ArticleResponse,
   FooterResponse,
   OurTeamResponse,
@@ -66,6 +67,20 @@ export const getSingleArticle = async (
   try {
     const res = await Axios.get<SingleArticeResponse>(
       `/api/articles/${id}?populate[0]=author&populate[1]=thumbnail&populate[2]=cover&populate[3]=author`
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getArticleComments = async (
+  id: number | string
+): Promise<ArticleCommentsResponse> => {
+  try {
+    const res = await Axios.get<ArticleCommentsResponse>(
+      `/api/article-comments?populate[author][fields][0]=username&filters[article][id][$eq]=${id}`
     );
     const data = res.data;
     return data;
