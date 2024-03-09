@@ -11,6 +11,7 @@ import { useGetAboutUs } from "../lib/react-query/index.ts";
 import Map from "../components/shared/Map.tsx";
 import DescStats from "../components/AboutUs/DescStats.tsx";
 import Social from "../components/shared/Social.tsx";
+import { IMAGE_BASE_URL } from "../constants/index.ts";
 
 function AboutUs() {
   const [t, i18n] = useTranslation();
@@ -106,7 +107,10 @@ function AboutUs() {
         <img
           loading="lazy"
           alt=""
-          src={getBaseUrl() + "/assets/images/img-4.jpg"}
+          src={
+            IMAGE_BASE_URL +
+            aboutUsResponse.data.attributes.image.data.attributes.url
+          }
           className="w-full h-auto object-cover max-h-[33rem] rounded-sm max-lg:max-h-[33rem] max-lg:w-auto max-lg:order-1"
         />
       </div>

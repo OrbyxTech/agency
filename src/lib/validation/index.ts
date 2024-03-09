@@ -8,3 +8,11 @@ export const ContactUsSchema = z.object({
 });
 
 export type ContactUsSchemaType = z.infer<typeof ContactUsSchema>;
+
+export const SignUpSchema = z.object({
+  username: z.string(),
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+export type SignUpSchemaType = z.infer<typeof SignUpSchema>;

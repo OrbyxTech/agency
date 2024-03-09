@@ -12,7 +12,7 @@ import {
 export const getAboutUs = async (): Promise<AboutUsResponse> => {
   try {
     const res = await Axios.get<AboutUsResponse>(
-      "/api/about-us?populate[0]=socials&populate[1]=socials.icon"
+      "/api/about-us?populate[0]=socials&populate[1]=socials.icon&populate[2]=image"
     );
     const data = res.data;
     return data;

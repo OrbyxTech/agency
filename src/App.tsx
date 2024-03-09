@@ -16,6 +16,9 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SignUp from "./pages/auth/SignUp";
+import SignIn from "./pages/auth/SignIn";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 const queryClient = new QueryClient();
 
@@ -44,8 +47,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
-        <ApplicationLayout>
-          <Routes>
+        <Routes>
+          <Route element={<ApplicationLayout />}>
             <Route path={ApplicationRoutes.pages.home} element={<Home />} />
             <Route
               path={ApplicationRoutes.pages.blog.blog}
@@ -79,9 +82,12 @@ function App() {
               path={ApplicationRoutes.pages.work["project-details"]}
               element={<ProjectDetails />}
             />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </ApplicationLayout>
+          </Route>
+        </Routes>
       </ChakraProvider>
     </QueryClientProvider>
   );
