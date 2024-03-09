@@ -17,6 +17,11 @@ export interface SignUpResponse {
   user: User;
 }
 
+export interface SignInResponse {
+  jwt: string;
+  user: User;
+}
+
 export interface User {
   id: number;
   username: string;

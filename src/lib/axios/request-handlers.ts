@@ -1,4 +1,4 @@
-import { SignUpSchemaType } from "../validation/index.ts";
+import { SignInSchemaType, SignUpSchemaType } from "../validation/index.ts";
 import Axios from "./index.ts";
 
 import {
@@ -7,6 +7,7 @@ import {
   ArticleResponse,
   FooterResponse,
   OurTeamResponse,
+  SignInResponse,
   SignUpResponse,
   SingleArticeResponse,
 } from "./types.ts";
@@ -23,6 +24,19 @@ export const signUp = async ({
     const res = await Axios.post<SignUpResponse>("/api/auth/local/register", {
       username,
       email,
+      password,
+    });
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const signIn = async ({ identifier, password }: SignInSchemaType) => {
+  try {
+    const res = await Axios.post<SignInResponse>("/api/auth/local", {
+      identifier,
       password,
     });
     const data = res.data;

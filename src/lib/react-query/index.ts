@@ -7,6 +7,7 @@ import {
   getFooter,
   getOurTeam,
   getSingleArticle,
+  signIn,
   signUp,
 } from "../axios/request-handlers.ts";
 import { QUERY_KEYS } from "./keys.ts";
@@ -23,6 +24,22 @@ export const useSignUp = () => {
   const { mutate, isPending, isSuccess } = useMutation({
     mutationKey: [QUERY_KEYS.SIGNUP],
     mutationFn: signUp,
+    onSuccess: (data) => {
+      login(data.jwt, data.user);
+      return navigate("/");
+    },
+  });
+
+  return { mutate, isLoading: isPending, isSuccess };
+};
+
+export const useSignIn = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationKey: [QUERY_KEYS.SIGNIN],
+    mutationFn: signIn,
     onSuccess: (data) => {
       login(data.jwt, data.user);
       return navigate("/");
