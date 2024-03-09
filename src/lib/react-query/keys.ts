@@ -4,4 +4,7 @@ export const QUERY_KEYS = {
   FOOTER: "footer",
   ARTICLES: "articles",
   COMMENTS: "comments",
+  SIGNUP: "signup",
+  SIGNIN: "signin",
+  FORGOT_PASSWORD: "forgot-password",
 };

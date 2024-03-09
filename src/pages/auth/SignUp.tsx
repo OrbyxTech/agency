@@ -4,20 +4,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "i18next";
 import { SignUpSchemaType, SignUpSchema } from "../../lib/validation";
 import { Link } from "react-router-dom";
+import { useSignUp } from "../../lib/react-query";
 
 const SignUp = () => {
+  const { mutate, isLoading } = useSignUp();
+
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<SignUpSchemaType>({ resolver: zodResolver(SignUpSchema) });
 
   const onSubmit = (data: SignUpSchemaType) => {
-    console.log(data);
+    mutate({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mb-10">
       <div className="w-full py-32 bg-black/95 flex flex-col items-center justify-center px-4">
         <p className="text-white text-6xl lg:text-7xl">Sign Up</p>
         <p className="text-lg mt-3 text-white/60">Auth - SignUp</p>
@@ -36,35 +43,52 @@ const SignUp = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-8 sm:gap-y-12 mt-10 mx-auto max-w-sm lg:max-w-xl"
       >
-        <input
-          type="text"
-          className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
+        <div className="space-y-4">
+          <input
+            type="text"
+            className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
-                        transition-colors duration-200"
-          placeholder={t("contact-us.form.name")}
-          maxLength={80}
-          {...register("username")}
-        />
+                        transition-colors duration-200 w-full"
+            placeholder={t("contact-us.form.name")}
+            maxLength={80}
+            {...register("username")}
+          />
 
-        <input
-          type="email"
-          className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
-                        border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
-                        transition-colors duration-200"
-          placeholder={t("contact-us.form.email")}
-          maxLength={80}
-          {...register("email")}
-        />
+          {errors.username && (
+            <p className={"text-sm text-red-500"}>{errors.username.message}</p>
+          )}
+        </div>
 
-        <input
-          type="password"
-          className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
+        <div className="space-y-4">
+          <input
+            type="email"
+            className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
-                        transition-colors duration-200"
-          placeholder={"Password"}
-          maxLength={80}
-          {...register("password")}
-        />
+                        transition-colors duration-200 w-full"
+            placeholder={t("contact-us.form.email")}
+            maxLength={80}
+            {...register("email")}
+          />
+
+          {errors.email && (
+            <p className={"text-sm text-red-500"}>{errors.email.message}</p>
+          )}
+        </div>
+
+        <div className="space-y-4">
+          <input
+            type="password"
+            className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
+                        border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
+                        transition-colors duration-200 w-full"
+            placeholder={"Password"}
+            maxLength={80}
+            {...register("password")}
+          />
+          {errors.password && (
+            <p className={"text-sm text-red-500"}>{errors.password.message}</p>
+          )}
+        </div>
 
         <button
           className="w-full max-w-md block mx-auto bg-black/90 text-white text-lg font-[iranyekan300]

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import {
   getAboutUs,
@@ -7,8 +7,30 @@ import {
   getFooter,
   getOurTeam,
   getSingleArticle,
+  signUp,
 } from "../axios/request-handlers.ts";
 import { QUERY_KEYS } from "./keys.ts";
+import { useAuth } from "../../context/authContext.tsx";
+import { useNavigate } from "react-router-dom";
+
+/* -------------------------------------------------------------------------- */
+/*                                AUTH QUERIES                                */
+/* -------------------------------------------------------------------------- */
+export const useSignUp = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationKey: [QUERY_KEYS.SIGNUP],
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      login(data.jwt, data.user);
+      return navigate("/");
+    },
+  });
+
+  return { mutate, isLoading: isPending, isSuccess };
+};
 
 export const useGetAboutUs = () => {
   const { data, isLoading, error } = useQuery({

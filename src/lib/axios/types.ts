@@ -10,6 +10,26 @@ export interface Pagination {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                 AUTH TYPES                                 */
+/* -------------------------------------------------------------------------- */
+export interface SignUpResponse {
+  jwt: string;
+  user: User;
+}
+
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
+  updatedAt: string;
+  user_role: string;
+}
+
+/* -------------------------------------------------------------------------- */
 /*                               ABOUT US TYPES                               */
 /* -------------------------------------------------------------------------- */
 export interface AboutUsResponse {
