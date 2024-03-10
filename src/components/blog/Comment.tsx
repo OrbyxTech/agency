@@ -39,7 +39,9 @@ const Comment = ({ comment, articleId }: Props) => {
         </span>
       </p>
 
-      {/* TODO:Add a feature to reply if user is admin */}
+      {comment.attributes.reply.length > 0 && (
+        <p>Admin Answer: {comment.attributes.reply}</p>
+      )}
     </div>
   );
 };
