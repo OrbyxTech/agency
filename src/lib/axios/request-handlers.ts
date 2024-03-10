@@ -146,7 +146,7 @@ export const createComment = async ({
         data: {
           content,
           article: {
-            connect: articleId,
+            connect: [articleId],
           },
         },
       }

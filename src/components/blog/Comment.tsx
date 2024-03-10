@@ -13,7 +13,7 @@ interface Props {
 const Comment = ({ comment, articleId }: Props) => {
   const { user } = useAuth();
 
-  const { mutate: deleteComment } = useDeleteComment(articleId);
+  const { mutate: deleteComment, isLoading } = useDeleteComment(articleId);
 
   const onDelete = () => {
     deleteComment(comment.id);
@@ -25,7 +25,7 @@ const Comment = ({ comment, articleId }: Props) => {
       <div className="flex justify-between gap-3">
         <p>{parse(comment.attributes.content)}</p>
         {user.id === comment.attributes.author.data.id && (
-          <button onClick={onDelete}>
+          <button disabled={isLoading} onClick={onDelete}>
             <DeleteIcon />
           </button>
         )}
