@@ -1,5 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useGetArticleComments, useGetSingleArticle } from "../lib/react-query";
+import {
+  useCreateComment,
+  useGetArticleComments,
+  useGetSingleArticle,
+} from "../lib/react-query";
 import { IMAGE_BASE_URL } from "../constants";
 
 import parse from "html-react-parser";
@@ -8,10 +12,14 @@ import { Badge, Button, Textarea } from "@chakra-ui/react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import { useState } from "react";
 import Comment from "../components/blog/Comment";
+import { useAuth } from "../context/AuthContext";
 
 const BlogDetail = () => {
   const { id } = useParams();
 
+  const { user } = useAuth();
+
+  const { mutate, isLoading: isCreateCommentIsLoading } = useCreateComment(id);
   const { data, isLoading } = useGetSingleArticle(id);
   const { data: commentsData, isLoading: commentsIsLoading } =
     useGetArticleComments(id);
@@ -20,6 +28,16 @@ const BlogDetail = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (comment.trim().length === 0) {
+      return alert("Please enter a comment");
+    }
+
+    if (user === null) {
+      return alert("Please Login");
+    }
+
+    mutate({ articleId: id, content: comment });
 
     setComment("");
   };
@@ -31,6 +49,12 @@ const BlogDetail = () => {
       </div>
     );
   }
+
+  commentsData.data.sort(
+    (a, b) =>
+      new Date(b.attributes.createdAt).getTime() -
+      new Date(a.attributes.createdAt).getTime()
+  );
 
   const keywordsArray = stringToArray(data.data.attributes.keywords, ",");
 
@@ -94,16 +118,23 @@ const BlogDetail = () => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
-          <Button type="submit" ml={"auto"} colorScheme="gray">
+          <Button
+            disabled={isCreateCommentIsLoading}
+            type="submit"
+            ml={"auto"}
+            colorScheme="gray"
+          >
             Submit
           </Button>
         </form>
 
         {/* Comments */}
-        <div className="mt-8">
-          {commentsData.data.map((comment) => (
-            <Comment key={`comment-${comment.id}`} comment={comment} />
-          ))}
+        <div className="mt-8 space-y-2">
+          {!commentsIsLoading
+            ? commentsData.data.map((comment) => (
+                <Comment key={`comment-${comment.id}`} comment={comment} />
+              ))
+            : "Loading"}
         </div>
       </div>
     </div>

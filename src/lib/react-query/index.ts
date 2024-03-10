@@ -1,6 +1,7 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
+  createComment,
   getAboutUs,
   getArticleComments,
   getArticles,
@@ -11,7 +12,7 @@ import {
   signUp,
 } from "../axios/request-handlers.ts";
 import { QUERY_KEYS } from "./keys.ts";
-import { useAuth } from "../../context/authContext.tsx";
+import { useAuth } from "../../context/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 
 /* -------------------------------------------------------------------------- */
@@ -107,4 +108,18 @@ export const useGetArticleComments = (id: number | string) => {
   });
 
   return { data, isLoading, error };
+};
+
+export const useCreateComment = (id: number | string) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending: isLoading } = useMutation({
+    mutationKey: [QUERY_KEYS.COMMENTS],
+    mutationFn: createComment,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMMENTS, id] });
+    },
+  });
+
+  return { mutate, isLoading };
 };

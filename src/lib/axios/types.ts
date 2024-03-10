@@ -449,3 +449,53 @@ export interface AuthorData {
 export interface ArticleCommentsAttributes2 {
   username: string;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                        CREATE COMMENT RESPONSE TYPES                       */
+/* -------------------------------------------------------------------------- */
+export interface CreateCommentResponse {
+  data: CreateCommentData;
+  meta: Meta;
+}
+
+export interface CreateCommentData {
+  id: number;
+  attributes: CreateCommentAttributes;
+}
+
+export interface CreateCommentAttributes {
+  content: string;
+  status: string;
+  reply: any;
+  createdAt: string;
+  updatedAt: string;
+  article: CreateCommentArticle;
+  author: CreateCommentAuthor;
+}
+
+export interface CreateCommentArticle {
+  data: CreateCommentData2;
+}
+
+export interface CreateCommentData2 {
+  id: number;
+  attributes: CreateCommentAttributes2;
+}
+
+export interface CreateCommentAttributes2 {
+  name: string;
+  description: string;
+  keywords: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCommentAuthor {
+  data: CreateCommentData3;
+}
+
+export interface CreateCommentData3 {
+  id: number;
+  attributes: User;
+}

@@ -1,3 +1,4 @@
+import { number } from "zod";
 import { SignInSchemaType, SignUpSchemaType } from "../validation/index.ts";
 import Axios from "./index.ts";
 
@@ -5,6 +6,7 @@ import {
   AboutUsResponse,
   ArticleCommentsResponse,
   ArticleResponse,
+  CreateCommentResponse,
   FooterResponse,
   OurTeamResponse,
   SignInResponse,
@@ -112,12 +114,41 @@ export const getSingleArticle = async (
   }
 };
 
+/* -------------------------------------------------------------------------- */
+/*                              COMMENT  REQUESTS                             */
+/* -------------------------------------------------------------------------- */
 export const getArticleComments = async (
   id: number | string
 ): Promise<ArticleCommentsResponse> => {
   try {
     const res = await Axios.get<ArticleCommentsResponse>(
       `/api/article-comments?populate[author][fields][0]=username&filters[article][id][$eq]=${id}`
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createComment = async ({
+  articleId,
+  content,
+}: {
+  articleId: number | string;
+  content: string;
+}): Promise<CreateCommentResponse> => {
+  try {
+    const res = await Axios.post<CreateCommentResponse>(
+      `/api/article-comments?populate[0]=article&populate[1]=author`,
+      {
+        data: {
+          content,
+          article: {
+            connect: articleId,
+          },
+        },
+      }
     );
     const data = res.data;
     return data;
