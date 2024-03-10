@@ -1,16 +1,35 @@
+import { DeleteIcon } from "@chakra-ui/icons";
 import { ArticleCommentsData } from "../../lib/axios/types";
 import { timeAgo } from "../../lib/utils";
 import parse from "html-react-parser";
+import { useAuth } from "../../context/AuthContext";
+import { useDeleteComment } from "../../lib/react-query";
 
 interface Props {
   comment: ArticleCommentsData;
+  articleId?: string | number;
 }
 
-const Comment = ({ comment }: Props) => {
+const Comment = ({ comment, articleId }: Props) => {
+  const { user } = useAuth();
+
+  const { mutate: deleteComment } = useDeleteComment(articleId);
+
+  const onDelete = () => {
+    deleteComment(comment.id);
+  };
+
   return (
     <div className="p-4 border rounded-xl">
       {/* Content */}
-      <p className="">{parse(comment.attributes.content)}</p>
+      <div className="flex justify-between gap-3">
+        <p>{parse(comment.attributes.content)}</p>
+        {user.id === comment.attributes.author.data.id && (
+          <button onClick={onDelete}>
+            <DeleteIcon />
+          </button>
+        )}
+      </div>
 
       <p className="mt-2 text-black/60">
         <span>{comment.attributes.author.data.attributes.username}</span>

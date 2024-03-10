@@ -132,7 +132,11 @@ const BlogDetail = () => {
         <div className="mt-8 space-y-2">
           {!commentsIsLoading
             ? commentsData.data.map((comment) => (
-                <Comment key={`comment-${comment.id}`} comment={comment} />
+                <Comment
+                  key={`comment-${comment.id}`}
+                  comment={comment}
+                  articleId={id}
+                />
               ))
             : "Loading"}
         </div>

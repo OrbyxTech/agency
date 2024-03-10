@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
   createComment,
+  deleteComment,
   getAboutUs,
   getArticleComments,
   getArticles,
@@ -114,8 +115,22 @@ export const useCreateComment = (id: number | string) => {
   const queryClient = useQueryClient();
 
   const { mutate, isPending: isLoading } = useMutation({
-    mutationKey: [QUERY_KEYS.COMMENTS],
+    mutationKey: [QUERY_KEYS.COMMENTS, "createComment"],
     mutationFn: createComment,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMMENTS, id] });
+    },
+  });
+
+  return { mutate, isLoading };
+};
+
+export const useDeleteComment = (id: number | string) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending: isLoading } = useMutation({
+    mutationKey: [QUERY_KEYS.COMMENTS, "deleteComment"],
+    mutationFn: deleteComment,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMMENTS, id] });
     },

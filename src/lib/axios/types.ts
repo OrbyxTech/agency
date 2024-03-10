@@ -499,3 +499,24 @@ export interface CreateCommentData3 {
   id: number;
   attributes: User;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                            DELETE COMMENT TYPES                            */
+/* -------------------------------------------------------------------------- */
+export interface DeleteCommentResponse {
+  data: DeleteCommentData;
+  meta: Meta;
+}
+
+export interface DeleteCommentData {
+  id: number;
+  attributes: DeleteCommentAttributes;
+}
+
+export interface DeleteCommentAttributes {
+  content: string;
+  status: string;
+  reply: any;
+  createdAt: string;
+  updatedAt: string;
+}

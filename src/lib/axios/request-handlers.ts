@@ -7,6 +7,7 @@ import {
   ArticleCommentsResponse,
   ArticleResponse,
   CreateCommentResponse,
+  DeleteCommentResponse,
   FooterResponse,
   OurTeamResponse,
   SignInResponse,
@@ -149,6 +150,20 @@ export const createComment = async ({
           },
         },
       }
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteComment = async (
+  id: number | string
+): Promise<DeleteCommentResponse> => {
+  try {
+    const res = await Axios.delete<CreateCommentResponse>(
+      `/api/article-comments/${id}`
     );
     const data = res.data;
     return data;
