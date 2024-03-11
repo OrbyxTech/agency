@@ -49,7 +49,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={t("contact-us.form.name")}
+            placeholder={"Username"}
             maxLength={80}
             {...register("username")}
           />
@@ -65,7 +65,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={t("contact-us.form.email")}
+            placeholder={"Email *"}
             maxLength={80}
             {...register("email")}
           />
@@ -77,11 +77,43 @@ const SignUp = () => {
 
         <div className="space-y-4">
           <input
+            type="text"
+            className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
+                        border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
+                        transition-colors duration-200 w-full"
+            placeholder={"First Name *"}
+            maxLength={80}
+            {...register("firstName")}
+          />
+
+          {errors.firstName && (
+            <p className={"text-sm text-red-500"}>{errors.firstName.message}</p>
+          )}
+        </div>
+
+        <div className="space-y-4">
+          <input
+            type="text"
+            className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
+                        border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
+                        transition-colors duration-200 w-full"
+            placeholder={"Last Name *"}
+            maxLength={80}
+            {...register("lastName")}
+          />
+
+          {errors.lastName && (
+            <p className={"text-sm text-red-500"}>{errors.lastName.message}</p>
+          )}
+        </div>
+
+        <div className="space-y-4">
+          <input
             type="password"
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={"Password"}
+            placeholder={"Password *"}
             maxLength={80}
             {...register("password")}
           />

@@ -12,7 +12,7 @@ function Header() {
 
   return (
     <nav
-      className="w-full max-w-[95rem] bg-slate-950 mx-auto py-5 px-4 lg:px-10 flex items-center justify-between
+      className="w-full  bg-slate-950 mx-auto py-5 px-4 lg:px-10 flex items-center justify-between
       bg-[--header-bg]"
     >
       {i18n.dir(i18n.language) === "ltr" ? (

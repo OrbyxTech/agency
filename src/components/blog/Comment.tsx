@@ -40,7 +40,7 @@ const Comment = ({ comment, articleId }: Props) => {
       </p>
 
       {comment.attributes.reply.length > 0 && (
-        <p>Admin Answer: {comment.attributes.reply}</p>
+        <p className="mt-2">Admin Answer: {comment.attributes.reply}</p>
       )}
     </div>
   );

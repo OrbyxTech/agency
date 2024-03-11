@@ -10,9 +10,11 @@ export const ContactUsSchema = z.object({
 export type ContactUsSchemaType = z.infer<typeof ContactUsSchema>;
 
 export const SignUpSchema = z.object({
-  username: z.string(),
+  username: z.string().min(1),
   email: z.string().email(),
   password: z.string().min(6),
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
 });
 
 export type SignUpSchemaType = z.infer<typeof SignUpSchema>;
