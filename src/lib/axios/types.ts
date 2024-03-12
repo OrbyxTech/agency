@@ -269,6 +269,8 @@ export interface ArticleAttributes {
   name: string;
   description: string;
   thumbnail: ArticleThumbnail;
+  likesCount: number;
+  dislikesCount: number;
 }
 export interface ArticleThumbnail {
   data: ArticleData;

@@ -96,7 +96,7 @@ export const getFooter = async (): Promise<FooterResponse> => {
 export const getArticles = async (): Promise<ArticleResponse> => {
   try {
     const res = await Axios.get<ArticleResponse>(
-      "/api/articles?fields[0]=id&fields[1]=name&fields[2]=description&populate[3]=thumbnail"
+      "/api/articles?fields[0]=id&fields[1]=name&fields[2]=description&fields[3]=likesCount&fields[4]=dislikesCount&populate[3]=thumbnail"
     );
     const data = res.data;
     return data;
