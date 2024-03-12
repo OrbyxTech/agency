@@ -9,6 +9,8 @@ import {
   getFooter,
   getOurTeam,
   getSingleArticle,
+  getSpecificUserLikeForArticle,
+  likeOrDislikeAnArticle,
   signIn,
   signUp,
 } from "../axios/request-handlers.ts";
@@ -81,6 +83,9 @@ export const useGetFooter = () => {
   return { data, isLoading, error };
 };
 
+/* -------------------------------------------------------------------------- */
+/*                               ARTICLE QUERIES                              */
+/* -------------------------------------------------------------------------- */
 export const useGetArticles = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QUERY_KEYS.ARTICLES],
@@ -99,6 +104,40 @@ export const useGetSingleArticle = (id: number | string) => {
   });
 
   return { data, isLoading, error };
+};
+
+export const useLikeOrDislikeArticle = (articleId: number | string) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending: isLoading } = useMutation({
+    mutationKey: [QUERY_KEYS.ARTICLES, "LikeOrDislike"],
+    mutationFn: likeOrDislikeAnArticle,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.ARTICLES, articleId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [articleId, "LikeOrDislikeForUser"],
+      });
+    },
+  });
+
+  return { mutate, isLoading };
+};
+
+export const useGetUserLikeForArticle = ({
+  userId,
+  articleId,
+}: {
+  userId: string | number;
+  articleId: string | number;
+}) => {
+  const { data, isLoading } = useQuery({
+    queryKey: [articleId, "LikeOrDislikeForUser"],
+    queryFn: () => getSpecificUserLikeForArticle({ userId, articleId }),
+  });
+
+  return { data, isLoading };
 };
 
 export const useGetArticleComments = (id: number | string) => {

@@ -24,7 +24,7 @@ const Comment = ({ comment, articleId }: Props) => {
       {/* Content */}
       <div className="flex justify-between gap-3">
         <p>{parse(comment.attributes.content)}</p>
-        {user.id === comment.attributes.author.data.id && (
+        {user !== null && user?.id === comment.attributes.author.data.id && (
           <button disabled={isLoading} onClick={onDelete}>
             <DeleteIcon />
           </button>
@@ -39,7 +39,7 @@ const Comment = ({ comment, articleId }: Props) => {
         </span>
       </p>
 
-      {comment.attributes.reply.length > 0 && (
+      {comment?.attributes?.reply?.length > 0 && (
         <p className="mt-2">Admin Answer: {comment.attributes.reply}</p>
       )}
     </div>

@@ -333,6 +333,8 @@ export interface SingleArticeAttributes {
   author: SingleArticeAuthor;
   thumbnail: SingleArticeThumbnail;
   cover: SingleArticeCover;
+  likesCount: number;
+  dislikesCount: number;
 }
 export interface SingleArticeAuthor {
   data: SingleArticeData1;
@@ -521,4 +523,53 @@ export interface DeleteCommentAttributes {
   reply: any;
   createdAt: string;
   updatedAt: string;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                        CREATE LIKE OR DISLIKE TYPES                        */
+/* -------------------------------------------------------------------------- */
+export interface LikeOrDislikeResponse {
+  data: LikeOrDislikeData;
+  meta: Meta;
+}
+
+export interface LikeOrDislikeData {
+  id: number;
+  attributes: LikeOrDislikeAttributes;
+}
+
+export interface LikeOrDislikeAttributes {
+  like: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                       GET USER LIKE FOR ARTICLE TYPES                      */
+/* -------------------------------------------------------------------------- */
+export interface getUserLikeForArticleResponse {
+  data: getUserLikeForArticleData[];
+  meta: Meta;
+}
+
+export interface getUserLikeForArticleData {
+  id: number;
+  attributes: getUserLikeForArticleDatumAttributes;
+}
+
+export interface getUserLikeForArticleDatumAttributes {
+  like: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  article: getUserLikeForArticleArticle;
+  author: getUserLikeForArticleArticle;
+}
+
+export interface getUserLikeForArticleArticle {
+  data: getUserLikeForArticleData;
+}
+
+export interface getUserLikeForArticleData {
+  id: number;
+  attributes: {};
 }

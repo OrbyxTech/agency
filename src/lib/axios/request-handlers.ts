@@ -9,10 +9,12 @@ import {
   CreateCommentResponse,
   DeleteCommentResponse,
   FooterResponse,
+  LikeOrDislikeResponse,
   OurTeamResponse,
   SignInResponse,
   SignUpResponse,
   SingleArticeResponse,
+  getUserLikeForArticleResponse,
 } from "./types.ts";
 
 /* -------------------------------------------------------------------------- */
@@ -111,6 +113,47 @@ export const getSingleArticle = async (
   try {
     const res = await Axios.get<SingleArticeResponse>(
       `/api/articles/${id}?populate[0]=author&populate[1]=thumbnail&populate[2]=cover&populate[3]=author`
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const likeOrDislikeAnArticle = async ({
+  id,
+  val,
+}: {
+  id: string | number;
+  val: boolean;
+}): Promise<LikeOrDislikeResponse> => {
+  try {
+    const res = await Axios.post<LikeOrDislikeResponse>(`/api/article-likes`, {
+      data: {
+        like: val,
+        article: {
+          connect: [id],
+        },
+      },
+    });
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSpecificUserLikeForArticle = async ({
+  userId,
+  articleId,
+}: {
+  userId: string | number;
+  articleId: string | number;
+}): Promise<getUserLikeForArticleResponse> => {
+  try {
+    const res = await Axios.get<getUserLikeForArticleResponse>(
+      `/api/article-likes?populate[article][fields][0]=id&populate[author][fields][0]=id&filters[author][id][$eq]=${userId}&filters[article][id][$eq]=${articleId}`
     );
     const data = res.data;
     return data;

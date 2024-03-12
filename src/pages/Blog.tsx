@@ -1,5 +1,4 @@
 import BlogGrid from "../components/blog/BlogGrid";
-import Filters from "../components/blog/Filters";
 
 const Blogs = () => {
   return (
@@ -11,10 +10,7 @@ const Blogs = () => {
       </div>
 
       {/* Blog Grid  */}
-      <div className="grid grid-cols-[35%_1fr] sm:grid-cols-[25%_1fr] lg:grid-cols-[20%_1fr]">
-        <Filters />
-        <BlogGrid />
-      </div>
+      <BlogGrid />
     </div>
   );
 };

@@ -3,6 +3,8 @@ import {
   useCreateComment,
   useGetArticleComments,
   useGetSingleArticle,
+  useGetUserLikeForArticle,
+  useLikeOrDislikeArticle,
 } from "../lib/react-query";
 import { IMAGE_BASE_URL } from "../constants";
 
@@ -19,10 +21,15 @@ const BlogDetail = () => {
 
   const { user } = useAuth();
 
+  const { mutate: likeOrDislikeMutate, isLoading: likeOrDislikeLoading } =
+    useLikeOrDislikeArticle(id);
+
   const { mutate, isLoading: isCreateCommentIsLoading } = useCreateComment(id);
   const { data, isLoading } = useGetSingleArticle(id);
   const { data: commentsData, isLoading: commentsIsLoading } =
     useGetArticleComments(id);
+  const { data: userLikeForArticle, isLoading: userLikeForArticleLoading } =
+    useGetUserLikeForArticle({ userId: user?.id, articleId: id });
 
   const [comment, setComment] = useState("");
 
@@ -42,7 +49,7 @@ const BlogDetail = () => {
     setComment("");
   };
 
-  if (isLoading || commentsIsLoading) {
+  if (isLoading || commentsIsLoading || userLikeForArticleLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
@@ -81,9 +88,39 @@ const BlogDetail = () => {
           </p>
         </div>
         {/* Like */}
-        <div className="flex items-center gap-2 justify-end">
-          <AiOutlineLike className="w-5 h-5 cursor-pointer text-black/60" />
-          <AiOutlineDislike className="w-5 h-5 cursor-pointer text-black/60" />
+        <div className="flex items-center gap-3 justify-end">
+          <button
+            className="flex items-center gap-1 cursor-pointer disabled:cursor-default"
+            disabled={user === null || likeOrDislikeLoading}
+            onClick={() => likeOrDislikeMutate({ id, val: true })}
+          >
+            <AiOutlineLike
+              className={`w-6 h-6 ${
+                user?.id ===
+                  userLikeForArticle?.data[0]?.attributes?.author?.data?.id &&
+                userLikeForArticle?.data[0]?.attributes?.like === true
+                  ? "text-red-500"
+                  : "text-black/60"
+              }`}
+            />
+            {data.data.attributes.likesCount}
+          </button>
+          <button
+            className="flex items-center gap-1 cursor-pointer disabled:cursor-default"
+            disabled={user === null || likeOrDislikeLoading}
+            onClick={() => likeOrDislikeMutate({ id, val: false })}
+          >
+            <AiOutlineDislike
+              className={`w-6 h-6 ${
+                user?.id ===
+                  userLikeForArticle?.data[0]?.attributes?.author?.data?.id &&
+                userLikeForArticle?.data[0]?.attributes?.like === false
+                  ? "text-red-500"
+                  : "text-black/60"
+              }`}
+            />
+            <span>{data.data.attributes.dislikesCount}</span>
+          </button>
         </div>
       </div>
 
