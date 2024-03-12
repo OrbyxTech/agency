@@ -13,8 +13,8 @@ export const SignUpSchema = z.object({
   username: z.string().min(1),
   email: z.string().email(),
   password: z.string().min(6),
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
+  first_name: z.string().min(1),
+  last_name: z.string().min(1),
 });
 
 export type SignUpSchemaType = z.infer<typeof SignUpSchema>;

@@ -22,16 +22,16 @@ export const signUp = async ({
   username,
   email,
   password,
-  firstName,
-  lastName,
+  first_name,
+  last_name,
 }: SignUpSchemaType) => {
   try {
     const res = await Axios.post<SignUpResponse>("/api/auth/local/register", {
       username,
       email,
       password,
-      firstName,
-      lastName,
+      first_name,
+      last_name,
     });
     const data = res.data;
     return data;

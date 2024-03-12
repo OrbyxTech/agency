@@ -20,6 +20,8 @@ const SignUp = () => {
       username: data.username,
       email: data.email,
       password: data.password,
+      first_name: data.first_name,
+      last_name: data.last_name,
     });
   };
 
@@ -83,11 +85,13 @@ const SignUp = () => {
                         transition-colors duration-200 w-full"
             placeholder={"First Name *"}
             maxLength={80}
-            {...register("firstName")}
+            {...register("first_name")}
           />
 
-          {errors.firstName && (
-            <p className={"text-sm text-red-500"}>{errors.firstName.message}</p>
+          {errors.first_name && (
+            <p className={"text-sm text-red-500"}>
+              {errors.first_name.message}
+            </p>
           )}
         </div>
 
@@ -99,11 +103,11 @@ const SignUp = () => {
                         transition-colors duration-200 w-full"
             placeholder={"Last Name *"}
             maxLength={80}
-            {...register("lastName")}
+            {...register("last_name")}
           />
 
-          {errors.lastName && (
-            <p className={"text-sm text-red-500"}>{errors.lastName.message}</p>
+          {errors.last_name && (
+            <p className={"text-sm text-red-500"}>{errors.last_name.message}</p>
           )}
         </div>
 
