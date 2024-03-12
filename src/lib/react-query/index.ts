@@ -86,10 +86,10 @@ export const useGetFooter = () => {
 /* -------------------------------------------------------------------------- */
 /*                               ARTICLE QUERIES                              */
 /* -------------------------------------------------------------------------- */
-export const useGetArticles = () => {
+export const useGetArticles = ({ searchTerm }: { searchTerm: string }) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: [QUERY_KEYS.ARTICLES],
-    queryFn: getArticles,
+    queryKey: [QUERY_KEYS.ARTICLES, searchTerm],
+    queryFn: () => getArticles({ searchTerm }),
     refetchOnWindowFocus: false,
   });
 

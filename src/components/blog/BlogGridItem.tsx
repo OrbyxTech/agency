@@ -17,7 +17,7 @@ const BlogGridItem = ({ article }: Props) => {
           src={
             IMAGE_BASE_URL + article.attributes.thumbnail.data.attributes.url
           }
-          className="w-full h-[160px] sm:h-[360px] object-cover max-w-sm rounded-xl block mx-auto scale-90 group-hover:scale-100 transition-transform duration-300"
+          className="w-full h-[200px] sm:h-[360px] object-cover max-w-sm rounded-xl block mx-auto scale-90 group-hover:scale-100 transition-transform duration-300"
         />
       </Link>
       <div className="mt-4 px-2 flex flex-col gap-y-1">

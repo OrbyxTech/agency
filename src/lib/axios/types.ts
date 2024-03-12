@@ -32,6 +32,8 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   user_role: string;
+  first_name: string;
+  last_name: string;
 }
 
 /* -------------------------------------------------------------------------- */

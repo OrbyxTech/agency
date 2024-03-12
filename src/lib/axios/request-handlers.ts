@@ -95,10 +95,14 @@ export const getFooter = async (): Promise<FooterResponse> => {
 /*                              ARTICLE REQUESTS                              */
 /* -------------------------------------------------------------------------- */
 
-export const getArticles = async (): Promise<ArticleResponse> => {
+export const getArticles = async ({
+  searchTerm,
+}: {
+  searchTerm: string;
+}): Promise<ArticleResponse> => {
   try {
     const res = await Axios.get<ArticleResponse>(
-      "/api/articles?fields[0]=id&fields[1]=name&fields[2]=description&fields[3]=likesCount&fields[4]=dislikesCount&populate[3]=thumbnail"
+      `/api/articles?fields[0]=id&fields[1]=name&fields[2]=description&fields[3]=likesCount&fields[4]=dislikesCount&populate[3]=thumbnail&filters[name][$contains]=${searchTerm}`
     );
     const data = res.data;
     return data;
