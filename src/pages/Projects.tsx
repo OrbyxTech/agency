@@ -2,12 +2,18 @@ import { useTranslation } from "react-i18next";
 import ProjectsSection from "../components/ProjectsSection";
 import Banner_1 from "../components/Banner_1";
 import useGetHomePageDetails from "../hooks/useGetHomePageDetails";
+import { useGetProjects } from "../lib/react-query";
+import ProjectsGrid from "../components/projects/ProjectsGrid";
 
 function Projects() {
   const [t] = useTranslation();
 
   const { homePageDetails, isHomePageDetailsLoading } = useGetHomePageDetails();
-  if (isHomePageDetailsLoading) {
+  const { data: projectsData, isLoading: projectsDataLoading } = useGetProjects(
+    { searchTerm: "" }
+  );
+
+  if (isHomePageDetailsLoading || projectsDataLoading) {
     return (
       <div className="w-full h-[80vh] bg-gray-100 grid place-items-center">
         <p className="text-lg font-medium">Loading ....</p>
@@ -26,11 +32,16 @@ function Projects() {
         </p>
       </div>
 
-      <ProjectsSection
-        projects={t("home.projects.items")}
-        title={t("home.projects.title")}
-        className="mt-20 px-4 lg:px-10"
-      />
+      {/* Blog Grid  */}
+      {projectsDataLoading ? (
+        <div className="w-full h-[40rem] bg-gray-100 grid place-items-center">
+          <p className="text-lg font-medium">Loading ....</p>
+        </div>
+      ) : projectsData?.data?.length > 0 ? (
+        <ProjectsGrid data={projectsData} />
+      ) : (
+        "There is no article"
+      )}
 
       <Banner_1
         text={homePageDetails.data.attributes.cta1__title}

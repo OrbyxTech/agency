@@ -8,8 +8,11 @@ import {
   getArticles,
   getFooter,
   getOurTeam,
+  getProjects,
   getSingleArticle,
   getSpecificUserLikeForArticle,
+  getSpecificUserLikeForProject,
+  likeOrDislikeAProject,
   likeOrDislikeAnArticle,
   signIn,
   signUp,
@@ -106,6 +109,9 @@ export const useGetSingleArticle = (id: number | string) => {
   return { data, isLoading, error };
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                LIKE QUERIES                                */
+/* -------------------------------------------------------------------------- */
 export const useLikeOrDislikeArticle = (articleId: number | string) => {
   const queryClient = useQueryClient();
 
@@ -117,7 +123,26 @@ export const useLikeOrDislikeArticle = (articleId: number | string) => {
         queryKey: [QUERY_KEYS.ARTICLES, articleId],
       });
       queryClient.invalidateQueries({
-        queryKey: [articleId, "LikeOrDislikeForUser"],
+        queryKey: [articleId, "LikeOrDislikeArticleForUser"],
+      });
+    },
+  });
+
+  return { mutate, isLoading };
+};
+
+export const useLikeOrDislikeProject = (projectId: number | string) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending: isLoading } = useMutation({
+    mutationKey: [QUERY_KEYS.PROJECTS, "LikeOrDislike"],
+    mutationFn: likeOrDislikeAProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.PROJECTS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [projectId, "LikeOrDislikeProjectForUser"],
       });
     },
   });
@@ -133,13 +158,31 @@ export const useGetUserLikeForArticle = ({
   articleId: string | number;
 }) => {
   const { data, isLoading } = useQuery({
-    queryKey: [articleId, "LikeOrDislikeForUser"],
+    queryKey: [articleId, "LikeOrDislikeArticleForUser"],
     queryFn: () => getSpecificUserLikeForArticle({ userId, articleId }),
   });
 
   return { data, isLoading };
 };
 
+export const useGetUserLikeForProject = ({
+  userId,
+  projectId,
+}: {
+  userId: string | number;
+  projectId: string | number;
+}) => {
+  const { data, isLoading } = useQuery({
+    queryKey: [projectId, "LikeOrDislikeProjectForUser"],
+    queryFn: () => getSpecificUserLikeForProject({ userId, projectId }),
+  });
+
+  return { data, isLoading };
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               COMMENT QUERIES                              */
+/* -------------------------------------------------------------------------- */
 export const useGetArticleComments = (id: number | string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QUERY_KEYS.COMMENTS, id],
@@ -176,4 +219,17 @@ export const useDeleteComment = (id: number | string) => {
   });
 
   return { mutate, isLoading };
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               PROJECT QUERIES                              */
+/* -------------------------------------------------------------------------- */
+export const useGetProjects = ({ searchTerm }: { searchTerm: string }) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: [QUERY_KEYS.PROJECTS, searchTerm],
+    queryFn: () => getProjects({ searchTerm }),
+    refetchOnWindowFocus: false,
+  });
+
+  return { data, isLoading, error };
 };

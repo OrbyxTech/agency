@@ -9,6 +9,7 @@ import {
   CreateCommentResponse,
   DeleteCommentResponse,
   FooterResponse,
+  GetProjectsResponse,
   LikeOrDislikeResponse,
   OurTeamResponse,
   SignInResponse,
@@ -166,6 +167,47 @@ export const getSpecificUserLikeForArticle = async ({
   }
 };
 
+export const likeOrDislikeAProject = async ({
+  id,
+  val,
+}: {
+  id: string | number;
+  val: boolean;
+}): Promise<LikeOrDislikeResponse> => {
+  try {
+    const res = await Axios.post<LikeOrDislikeResponse>(`/api/project-likes`, {
+      data: {
+        like: val,
+        project: {
+          connect: [id],
+        },
+      },
+    });
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSpecificUserLikeForProject = async ({
+  userId,
+  projectId,
+}: {
+  userId: string | number;
+  projectId: string | number;
+}): Promise<getUserLikeForArticleResponse> => {
+  try {
+    const res = await Axios.get<getUserLikeForArticleResponse>(
+      `/api/project-likes?populate[project][fields][0]=id&populate[author][fields][0]=id&filters[author][id][$eq]=${userId}&filters[project][id][$eq]=${projectId}`
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /* -------------------------------------------------------------------------- */
 /*                              COMMENT  REQUESTS                             */
 /* -------------------------------------------------------------------------- */
@@ -215,6 +257,26 @@ export const deleteComment = async (
   try {
     const res = await Axios.delete<CreateCommentResponse>(
       `/api/article-comments/${id}`
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/* -------------------------------------------------------------------------- */
+/*                              PROJECT REQUESTS                              */
+/* -------------------------------------------------------------------------- */
+
+export const getProjects = async ({
+  searchTerm,
+}: {
+  searchTerm: string;
+}): Promise<GetProjectsResponse> => {
+  try {
+    const res = await Axios.get<GetProjectsResponse>(
+      `/api/projects?populate[0]=thumbnail&populate[1]=imagesfilters[name][$contains]=${searchTerm}`
     );
     const data = res.data;
     return data;

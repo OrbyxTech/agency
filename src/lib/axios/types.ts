@@ -575,3 +575,141 @@ export interface getUserLikeForArticleData {
   id: number;
   attributes: {};
 }
+
+/* -------------------------------------------------------------------------- */
+/*                           PROJECTS REQUEST TYPES                           */
+/* -------------------------------------------------------------------------- */
+export interface GetProjectsResponse {
+  data: GetProjectsDatum[];
+  meta: Meta;
+}
+
+export interface GetProjectsDatum {
+  id: number;
+  attributes: GetProjectsAttributes;
+}
+
+export interface GetProjectsAttributes {
+  title: string;
+  info: string;
+  description: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date;
+  likesCount: number;
+  dislikesCount: number;
+  thumbnail: GetProjectsAttributesThumbnail;
+  images: GetProjectsImages;
+}
+
+export interface GetProjectsImages {
+  data: GetProjectsImagesDatum[];
+}
+
+export interface GetProjectsImagesDatum {
+  id: number;
+  attributes: GetProjectsFluffyAttributes;
+}
+
+export interface GetProjectsFluffyAttributes {
+  name: string;
+  alternativeText: null;
+  caption: null;
+  width: number;
+  height: number;
+  formats: GetProjectsPurpleFormats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: null;
+  provider: string;
+  provider_metadata: null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface GetProjectsPurpleFormats {
+  thumbnail: GetProjectsLargeClass;
+  medium: GetProjectsLargeClass;
+  small: GetProjectsLargeClass;
+  large?: GetProjectsLargeClass;
+}
+
+export interface GetProjectsLargeClass {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: null;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+
+export interface GetProjectsAttributesThumbnail {
+  data: GetProjectsData;
+}
+
+export interface GetProjectsData {
+  id: number;
+  attributes: GetProjectsDataAttributes;
+}
+
+export interface GetProjectsDataAttributes {
+  name: string;
+  alternativeText: null;
+  caption: null;
+  width: number;
+  height: number;
+  formats: GetProjectsFluffyFormats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: null;
+  provider: string;
+  provider_metadata: null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface GetProjectsFluffyFormats {
+  thumbnail: GetProjectsLargeClass;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         LIKE OR DISLIKE FOR PROJECT                        */
+/* -------------------------------------------------------------------------- */
+export interface LikeOrDislikeForPorjectResponse {
+  data: LikeOrDislikeForPorjectDatum[];
+  meta: Meta;
+}
+
+export interface LikeOrDislikeForPorjectDatum {
+  id: number;
+  attributes: LikeOrDislikeForPorjectDatumAttributes;
+}
+
+export interface LikeOrDislikeForPorjectDatumAttributes {
+  like: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  project: LikeOrDislikeForPorjectAuthor;
+  author: LikeOrDislikeForPorjectAuthor;
+}
+
+export interface LikeOrDislikeForPorjectAuthor {
+  data: LikeOrDislikeForPorjectData;
+}
+
+export interface LikeOrDislikeForPorjectData {
+  id: number;
+  attributes: LikeOrDislikeForPorjectDataAttributes;
+}
+
+export interface LikeOrDislikeForPorjectDataAttributes {}
