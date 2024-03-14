@@ -276,7 +276,7 @@ export const getProjects = async ({
 }): Promise<GetProjectsResponse> => {
   try {
     const res = await Axios.get<GetProjectsResponse>(
-      `/api/projects?populate[0]=thumbnail&populate[1]=imagesfilters[name][$contains]=${searchTerm}`
+      `/api/projects?populate[0]=thumbnail&populate[1]=images&filters[title][$contains]=${searchTerm}`
     );
     const data = res.data;
     return data;
