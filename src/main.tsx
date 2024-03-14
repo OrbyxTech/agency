@@ -17,6 +17,9 @@ const App = lazy(async () => {
   return import("./App.tsx");
 });
 import "./index.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 import "./i18n.ts";
 import Loading from "./pages/Loading.tsx";
@@ -28,5 +31,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <App />
       </Suspense>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

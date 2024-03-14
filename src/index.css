@@ -6,7 +6,6 @@
   @apply text-[14px] xl:text-[16px] 2xl:text-[18px];
 }
 
-
 @font-face {
   font-family: iranyekan100;
   src: url(/fonts/iranyekan/Qs_Iranyekan-thin.ttf);
@@ -45,14 +44,14 @@
   scroll-behavior: smooth;
 }
 
-.reverse-even-child>div:nth-child(even) {
+.reverse-even-child > div:nth-child(even) {
   @apply lg:grid-cols-[11fr_10fr];
 }
-.reverse-even-child>div:nth-child(even)>div {
+.reverse-even-child > div:nth-child(even) > div {
   @apply lg:order-2;
 }
-.reverse-even-child>div:nth-child(even)>img {
-  @apply lg:order-1
+.reverse-even-child > div:nth-child(even) > img {
+  @apply lg:order-1;
 }
 
 .fadein-x-anim {
@@ -67,13 +66,12 @@
   animation-iteration-count: 1;
 }
 
-@keyframes fadein-right-anim-1{
+@keyframes fadein-right-anim-1 {
   to {
-      transform: translateX(0rem);
-      opacity: 1;
+    transform: translateX(0rem);
+    opacity: 1;
   }
 }
-
 
 .fadein-anim {
   opacity: 0;
@@ -85,12 +83,11 @@
   animation-iteration-count: 1;
 }
 
-@keyframes fadein-anim-1{
+@keyframes fadein-anim-1 {
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
-
 
 .loading-container span span {
   text-shadow: 0 0 40px rgba(255, 255, 255, 0);
@@ -107,4 +104,26 @@
     text-shadow: 0 0 80px rgba(255, 255, 255, 0.8);
     color: rgba(255, 255, 255, 1);
   }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination {
+  bottom: 0px;
 }
