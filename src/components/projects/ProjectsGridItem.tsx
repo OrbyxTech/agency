@@ -1,4 +1,10 @@
-import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
+import { useRef } from "react";
+import {
+  AiOutlineDislike,
+  AiOutlineLike,
+  AiFillRightCircle,
+  AiFillLeftCircle,
+} from "react-icons/ai";
 import parse from "html-react-parser";
 
 import {
@@ -26,6 +32,9 @@ interface Props {
 }
 
 const ProjectsGridItem = ({ project }: Props) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   const { user } = useAuth();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -55,9 +64,9 @@ const ProjectsGridItem = ({ project }: Props) => {
   return (
     <div className="w-full max-w-sm border border-gray-200 rounded-xl p-2 group">
       {/* PROJECT MODAL */}
-      <Modal size={"3xl"} isOpen={isOpen} onClose={onClose}>
+      <Modal size={"2xl"} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent mx={"10px"}>
           <ModalHeader>{project.attributes.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -65,23 +74,34 @@ const ProjectsGridItem = ({ project }: Props) => {
               spaceBetween={30}
               slidesPerView={1}
               pagination={{
-                type: "fraction",
+                type: "bullets",
               }}
-              navigation={true}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
               modules={[Pagination, Navigation]}
               // onSlideChange={() => console.log("slide change")}
               // onSwiper={(swiper) => console.log(swiper)}
             >
               {project.attributes.images.data.map((image) => (
                 <SwiperSlide className="h-full" key={image.attributes.url}>
-                  <img
-                    src={IMAGE_BASE_URL + image.attributes.url}
-                    alt=""
-                    className="w-[90%] h-[90%] object-cover block m-auto"
-                  />
+                  <img src={IMAGE_BASE_URL + image.attributes.url} alt="" />
                 </SwiperSlide>
               ))}
             </Swiper>
+            <button
+              className="absolute top-1/2 left-1 disabled:text-black/60"
+              ref={prevRef}
+            >
+              <AiFillLeftCircle className="w-5 h-5" />
+            </button>
+            <button
+              className="absolute top-1/2 right-1 disabled:text-black/60"
+              ref={nextRef}
+            >
+              <AiFillRightCircle className="w-5 h-5" />
+            </button>
           </ModalBody>
 
           {/* <ModalFooter>
