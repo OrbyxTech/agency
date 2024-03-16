@@ -1,11 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import ApplicationLayout from "./layouts/ApplicationLayout";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { ChakraProvider } from "@chakra-ui/react";
+
+import { AuthProvider } from "./context/AuthContext";
+import { ApplicationRoutes } from "./routes";
+import Home from "./pages/Home";
+import ApplicationLayout from "./layouts/ApplicationLayout";
 import NotFound from "./pages/NotFound";
 import AboutUs from "./pages/AboutUs";
-import { ApplicationRoutes } from "./routes";
 import ContactUs from "./pages/ContactUs";
 import OurTeam from "./pages/OurTeam";
 import Services from "./pages/Services";
@@ -14,12 +17,11 @@ import ProjectDetails from "./pages/ProjectDetails";
 
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SignUp from "./pages/auth/SignUp";
 import SignIn from "./pages/auth/SignIn";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-import { AuthProvider } from "./context/authContext";
+import OrderProject from "./pages/OrderProject";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 const queryClient = new QueryClient();
 
@@ -84,9 +86,16 @@ function App() {
                 path={ApplicationRoutes.pages.work["project-details"]}
                 element={<ProjectDetails />}
               />
+
+              {/* Auth Routes */}
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+
+              {/* Protected Routes */}
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/order-project" element={<OrderProject />} />
+              </Route>
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

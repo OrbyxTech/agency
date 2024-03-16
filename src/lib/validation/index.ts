@@ -25,3 +25,17 @@ export const SignInSchema = z.object({
 });
 
 export type SignInSchemaType = z.infer<typeof SignInSchema>;
+
+export const OrderProjectSchema = z.object({
+  isFree: z.boolean(),
+  description: z.string().min(1),
+  // first_name: z.string().min(1).optional(),
+  // last_name: z.string().min(1).optional(),
+  // email: z.string().email().optional(),
+  phone: z
+    .string()
+    .regex(/^09[0-9]{9}$/, { message: "Invalid phone number" })
+    .optional(),
+});
+
+export type OrderProjectSchemaType = z.infer<typeof OrderProjectSchema>;

@@ -26,8 +26,12 @@ interface AuthProviderProps {
 }
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("authToken") || null
+  );
+  const [user, setUser] = useState<User | null>(
+    JSON.parse(localStorage.getItem("authUser")) || null
+  );
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
