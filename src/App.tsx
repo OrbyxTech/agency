@@ -22,6 +22,7 @@ import SignIn from "./pages/auth/SignIn";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import OrderProject from "./pages/OrderProject";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
+import AuthLayout from "./pages/auth/AuthLayout";
 
 const queryClient = new QueryClient();
 
@@ -88,9 +89,11 @@ function App() {
               />
 
               {/* Auth Routes */}
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route element={<AuthLayout />}>
+                <Route path="/sign-up" element={<SignUp />} />
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+              </Route>
 
               {/* Protected Routes */}
               <Route element={<ProtectedRoutes />}>

@@ -84,11 +84,11 @@ const OrderProject = () => {
 
             <div className="space-y-4">
               <input
-                type="text"
+                type="email"
                 className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full read-only:text-slate-500 read-only:focus:border-b-slate-300"
-                placeholder={t("contact-us.form.name")}
+                placeholder={"Email"}
                 maxLength={80}
                 value={user?.email || ""}
                 readOnly={user !== null}
