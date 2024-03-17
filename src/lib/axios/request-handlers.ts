@@ -11,6 +11,7 @@ import {
   FooterResponse,
   GetProjectsResponse,
   LikeOrDislikeResponse,
+  OrderProjectResponse,
   OurTeamResponse,
   SignInResponse,
   SignUpResponse,
@@ -277,6 +278,52 @@ export const getProjects = async ({
   try {
     const res = await Axios.get<GetProjectsResponse>(
       `/api/projects?populate[0]=thumbnail&populate[1]=images&filters[title][$contains]=${searchTerm}`
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               ORDER REQUESTS                               */
+/* -------------------------------------------------------------------------- */
+export interface OrderProjectValues {
+  isFree: boolean;
+  first_name: string;
+  last_name: string;
+  email: string;
+  number: string;
+  description: string;
+}
+
+export const orderProject = async ({
+  isFree,
+  first_name,
+  last_name,
+  email,
+  number,
+  description,
+}: OrderProjectValues): Promise<OrderProjectResponse> => {
+  const formData = new FormData();
+
+  formData.append("isFree", String(isFree));
+  formData.append("first_name", first_name);
+  formData.append("last_name", last_name);
+  formData.append("email", email);
+  formData.append("number", number);
+  formData.append("projectDescription", description);
+
+  try {
+    const res = await Axios.post<OrderProjectResponse>(
+      `/api/project-requests?populate=*`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
     const data = res.data;
     return data;

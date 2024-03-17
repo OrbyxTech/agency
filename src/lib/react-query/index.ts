@@ -14,6 +14,7 @@ import {
   getSpecificUserLikeForProject,
   likeOrDislikeAProject,
   likeOrDislikeAnArticle,
+  orderProject,
   signIn,
   signUp,
 } from "../axios/request-handlers.ts";
@@ -232,4 +233,16 @@ export const useGetProjects = ({ searchTerm }: { searchTerm: string }) => {
   });
 
   return { data, isLoading, error };
+};
+
+/* -------------------------------------------------------------------------- */
+/*                            ORDER PROJECT QUERIES                           */
+/* -------------------------------------------------------------------------- */
+export const useOrderProject = () => {
+  const { mutate, isPending: isLoading } = useMutation({
+    mutationFn: orderProject,
+    mutationKey: ["OrderProject"],
+  });
+
+  return { mutate, isLoading };
 };

@@ -713,3 +713,48 @@ export interface LikeOrDislikeForPorjectData {
 }
 
 export interface LikeOrDislikeForPorjectDataAttributes {}
+
+/* -------------------------------------------------------------------------- */
+/*                             Order Project Types                            */
+/* -------------------------------------------------------------------------- */
+export interface OrderProjectResponse {
+  data: OrderProjectData;
+  meta: Meta;
+}
+
+export interface OrderProjectData {
+  id: number;
+  attributes: OrderProjectPurpleAttributes;
+}
+
+export interface OrderProjectPurpleAttributes {
+  isFree: boolean;
+  projectDescription: string;
+  status: string;
+  createdAt: Date;
+  updatedAt: Date;
+  author: OrderProjectAttachments;
+  attachments: OrderProjectAttachments;
+}
+
+export interface OrderProjectAttachments {
+  data: OrderProjectAttachmentsData | null;
+}
+
+export interface OrderProjectAttachmentsData {
+  id: number;
+  attributes: OrderProjectFluffyAttributes;
+}
+
+export interface OrderProjectFluffyAttributes {
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  user_role: string;
+  first_name: null;
+  last_name: null;
+}
