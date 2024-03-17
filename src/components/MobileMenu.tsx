@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-// import ChangeLangButton from "./ChangeLangButton"
+import ChangeLangButton from "./ChangeLangButton";
 import { menuItems } from "../utils/http";
 import { menuItemOptions } from "../utils/http/menuItems";
 import { HashLink } from "react-router-hash-link";
@@ -200,10 +200,12 @@ function MobileMenu() {
 
                     </Accordion> */}
 
-          {/* <div className="mt-auto flex items-center gap-x-2 justify-center mb-6 mx-auto w-max rounded-xl
-                    border border-slate-700">
-                        <ChangeLangButton />
-                    </div> */}
+          <div
+            className="mt-auto flex items-center gap-x-2 justify-center mb-6 mx-auto w-max rounded-xl
+                    border border-slate-700"
+          >
+            <ChangeLangButton />
+          </div>
         </div>
       </div>
     </>

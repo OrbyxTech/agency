@@ -23,6 +23,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import OrderProject from "./pages/OrderProject";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import AuthLayout from "./pages/auth/AuthLayout";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
@@ -41,12 +42,9 @@ function App() {
   // )
 
   // set direction based on current languaglanguage
-  // useEffect(
-  //   () => {
-  //     document.body.dir = i18n.dir(i18n.language)
-  //   },
-  //   [i18n.language]
-  // )
+  useEffect(() => {
+    document.body.dir = i18n.dir(i18n.language);
+  }, [i18n]);
 
   return (
     <AuthProvider>

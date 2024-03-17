@@ -15,8 +15,11 @@ import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import { useState } from "react";
 import Comment from "../components/blog/Comment";
 import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const BlogDetail = () => {
+  const [t] = useTranslation();
+
   const { id } = useParams();
 
   const { user } = useAuth();
@@ -146,12 +149,14 @@ const BlogDetail = () => {
 
       {/* Comments */}
       <div className="mt-8">
-        <h3 className="text-3xl font-bold">Comments</h3>
+        <h3 className="text-3xl font-bold">
+          {t("BlogDetailPage.comments.title")}
+        </h3>
 
         {/* Input */}
         <form onSubmit={onSubmit} className="mt-4 space-y-2">
           <Textarea
-            placeholder="Share your comment with us"
+            placeholder={t("BlogDetailPage.comments.placeholder")}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -161,7 +166,7 @@ const BlogDetail = () => {
             ml={"auto"}
             colorScheme="gray"
           >
-            Submit
+            {t("BlogDetailPage.comments.btn")}
           </Button>
         </form>
 

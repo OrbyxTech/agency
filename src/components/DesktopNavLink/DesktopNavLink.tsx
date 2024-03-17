@@ -1,23 +1,26 @@
-
-import WithoutMenu from "./WithoutMenu"
-import WithMenu from "./WithMenu"
+import WithoutMenu from "./WithoutMenu";
+import WithMenu from "./WithMenu";
 
 interface menuItem {
-    text: string,
-    href: string
+  text: string;
+  href: string;
 }
 
 interface DesktopNavLinkProps {
-    text: string,
-    href: string,
-    items?: Array<menuItem>,
-    asElem?: "a"
+  text: string;
+  href: string;
+  items?: Array<menuItem>;
+  asElem?: "a";
 }
 
-function DesktopNavLink({ text, href, items=[], asElem }: DesktopNavLinkProps) {
-
-    if(items.length > 0) return <WithMenu text={text} items={items} />
-    return <WithoutMenu asElem={asElem} text={text} href={href} />
+function DesktopNavLink({
+  text,
+  href,
+  items = [],
+  asElem,
+}: DesktopNavLinkProps) {
+  if (items.length > 0) return <WithMenu text={text} items={items} />;
+  return <WithoutMenu asElem={asElem} text={text} href={href} />;
 }
 
-export default DesktopNavLink
+export default DesktopNavLink;

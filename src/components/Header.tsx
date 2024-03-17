@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import MobileMenu from "./MobileMenu";
 import ChangeLangButton from "./ChangeLangButton";
 import { ApplicationRoutes } from "../routes";
-import getBaseUrl from "../utils/base-url";
 import LoginStateButton from "./shared/LoginStateButton";
 
 function Header() {
@@ -99,7 +98,7 @@ function Header() {
               text={t("header.contact")}
             />
 
-            {/* <ChangeLangButton /> */}
+            <ChangeLangButton />
 
             <LoginStateButton />
           </div>
@@ -122,89 +121,68 @@ function Header() {
 
           <div className="flex items-center gap-x-7 max-lg:hidden">
             <DesktopNavLink
-              href={ApplicationRoutes.pages.home}
-              text={t("header.home")}
+              items={[
+                {
+                  text: t("header.company.sub-links.about-us"),
+                  href: ApplicationRoutes.pages.company["about-us"],
+                },
+                {
+                  text: t("header.company.sub-links.our-team"),
+                  href: ApplicationRoutes.pages.company["our-team"],
+                },
+                {
+                  text: t("header.company.sub-links.services"),
+                  href: ApplicationRoutes.pages.company.services,
+                },
+              ]}
+              href=""
+              text={t("header.company.text")}
             />
 
             <DesktopNavLink
-              href={getBaseUrl() + "#about-us-section"}
-              text={t("about-us.title")}
-              asElem="a"
+              href="work"
+              text={t("header.work.text")}
+              items={[
+                {
+                  text: t("header.work.sub-links.project"),
+                  href: ApplicationRoutes.pages.work.project,
+                },
+                {
+                  text: t("header.work.sub-links.project-details"),
+                  href: ApplicationRoutes.pages.work["project-details"],
+                },
+                {
+                  text: t("header.work.sub-links.hot-projects"),
+                  href: ApplicationRoutes.pages.work["best-projects"],
+                },
+              ]}
             />
-            {/* <DesktopNavLink
-                items={[
-                  {
-                    text: t("header.company.sub-links.about-us"),
-                    href: ApplicationRoutes.pages.company["about-us"]
-                  },
-                  {
-                    text: t("header.company.sub-links.our-team"),
-                    href: ApplicationRoutes.pages.company["our-team"]
-                  },
-                  {
-                    text: t("header.company.sub-links.services"),
-                    href: ApplicationRoutes.pages.company.services
-                  }
-                ]}
-                href=""
-                text={t("header.company.text")}
-              /> */}
 
             <DesktopNavLink
-              href={getBaseUrl() + "#our-services-section"}
-              text={t("home.services.title")}
-              asElem="a"
-            />
-            {/* <DesktopNavLink
-                href="work"
-                text={t("header.work.text")}
-                items={[
-                  {
-                    text: t("header.work.sub-links.project"),
-                    href: ApplicationRoutes.pages.work.project
-                  },
-                  {
-                    text: t("header.work.sub-links.project-details"),
-                    href: ApplicationRoutes.pages.work["project-details"]
-                  },
-                  {
-                    text: t('header.work.sub-links.hot-projects'),
-                    href: ApplicationRoutes.pages.work["best-projects"]
-                  }
-                ]}
-              /> */}
-
-            {/* <DesktopNavLink
-                href="blog"
-                text={t("header.blog.text")}
-                items={[
-                  {
-                    text: t("header.blog.sub-links.blog"),
-                    href: ApplicationRoutes.pages.blog.blog
-                  },
-                  {
-                    text: t("header.blog.sub-links.latest-articles"),
-                    href: ApplicationRoutes.pages.blog["latest-articles"]
-                  },
-                  {
-                    text: t("header.blog.sub-links.recommended-for-you"),
-                    href: ApplicationRoutes.pages.blog["recommended-for-you"]
-                  },
-                  {
-                    text: t("header.blog.sub-links.best-of-day"),
-                    href: ApplicationRoutes.pages.blog["best-of-day"]
-                  },
-                  {
-                    text: t("header.blog.sub-links.best-of-week"),
-                    href: ApplicationRoutes.pages.blog["best-of-week"]
-                  },
-                ]}
-              /> */}
-
-            <DesktopNavLink
-              href={getBaseUrl() + "#our-projects-section"}
-              text={t("home.projects.title")}
-              asElem="a"
+              href="blog"
+              text={t("header.blog.text")}
+              items={[
+                {
+                  text: t("header.blog.sub-links.blog"),
+                  href: ApplicationRoutes.pages.blog.blog,
+                },
+                {
+                  text: t("header.blog.sub-links.latest-articles"),
+                  href: ApplicationRoutes.pages.blog["latest-articles"],
+                },
+                {
+                  text: t("header.blog.sub-links.recommended-for-you"),
+                  href: ApplicationRoutes.pages.blog["recommended-for-you"],
+                },
+                {
+                  text: t("header.blog.sub-links.best-of-day"),
+                  href: ApplicationRoutes.pages.blog["best-of-day"],
+                },
+                {
+                  text: t("header.blog.sub-links.best-of-week"),
+                  href: ApplicationRoutes.pages.blog["best-of-week"],
+                },
+              ]}
             />
 
             <DesktopNavLink
@@ -212,7 +190,9 @@ function Header() {
               text={t("header.contact")}
             />
 
-            {/* <ChangeLangButton /> */}
+            <ChangeLangButton />
+
+            <LoginStateButton />
           </div>
 
           <Logo />

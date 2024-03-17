@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from "../../constants";
 import { ArticleDataEntity } from "../../lib/axios/types";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   article: ArticleDataEntity;
 }
 
 const BlogGridItem = ({ article }: Props) => {
+  const [t] = useTranslation();
+
   return (
     <div className="w-full max-w-sm border border-gray-200 rounded-xl p-2 group">
       <Link to={`/blog/${article.id}`}>
@@ -44,7 +47,7 @@ const BlogGridItem = ({ article }: Props) => {
 
         <Link to={`/blog/${article.id}`}>
           <button className="w-[50%] group-hover:w-full bg-black/95 transition-all duration-500 active:scale-95 text-xs sm:text-base font-[iranyekan300] text-white py-3 px-4 rounded mt-7">
-            Read More
+            {t("BlogPage.BlogGridItemComponent.read-more")}
           </button>
         </Link>
       </div>
