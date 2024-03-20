@@ -1,4 +1,3 @@
-import { number } from "zod";
 import { SignInSchemaType, SignUpSchemaType } from "../validation/index.ts";
 import Axios from "./index.ts";
 
@@ -308,12 +307,17 @@ export const orderProject = async ({
 }: OrderProjectValues): Promise<OrderProjectResponse> => {
   const formData = new FormData();
 
-  formData.append("isFree", String(isFree));
-  formData.append("first_name", first_name);
-  formData.append("last_name", last_name);
-  formData.append("email", email);
-  formData.append("number", number);
-  formData.append("projectDescription", description);
+  formData.append(
+    "data",
+    JSON.stringify({
+      isFree,
+      first_name,
+      last_name,
+      email,
+      number,
+      projectDescription: description,
+    })
+  );
 
   try {
     const res = await Axios.post<OrderProjectResponse>(

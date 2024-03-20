@@ -239,9 +239,16 @@ export const useGetProjects = ({ searchTerm }: { searchTerm: string }) => {
 /*                            ORDER PROJECT QUERIES                           */
 /* -------------------------------------------------------------------------- */
 export const useOrderProject = () => {
+  const navigate = useNavigate();
+
   const { mutate, isPending: isLoading } = useMutation({
-    mutationFn: orderProject,
     mutationKey: ["OrderProject"],
+    mutationFn: orderProject,
+    onSuccess: () => {
+      alert("Succesfull");
+
+      return navigate("/");
+    },
   });
 
   return { mutate, isLoading };

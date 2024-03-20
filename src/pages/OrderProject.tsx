@@ -44,8 +44,8 @@ const OrderProject = () => {
   return (
     <div className="min-h-screen mb-10">
       <div className="w-full py-32 bg-black/95 flex flex-col items-center justify-center px-4">
-        <p className="text-white text-6xl lg:text-7xl">Sign In</p>
-        <p className="text-lg mt-3 text-white/60">Auth - SignIn</p>
+        <p className="text-white text-6xl lg:text-7xl">Order Project</p>
+        <p className="text-lg mt-3 text-white/60">Home - Order Project</p>
       </div>
 
       <div className="flex flex-col items-center mt-10">
@@ -139,19 +139,11 @@ const OrderProject = () => {
         <button
           className="w-full max-w-md block mx-auto bg-black/90 text-white text-lg font-[iranyekan300]
                         py-3 mt-8 active:scale-95 transition-transform duration-300"
-          // disabled={isLoading}
+          disabled={orderProjectMutationLoading}
         >
-          {/* {isLoading ? "Submitting..." : "Submit"} */}
-          Submit
+          {orderProjectMutationLoading ? "Submitting..." : "Submit"}
         </button>
       </form>
-
-      <div className="mt-10 text-center">
-        Not have any account?&nbsp;
-        <Link className="text-blue-500" to={"/sign-up"}>
-          Sign Up
-        </Link>
-      </div>
     </div>
   );
 };
