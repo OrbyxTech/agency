@@ -5,9 +5,13 @@ import MobileMenu from "./MobileMenu";
 import ChangeLangButton from "./ChangeLangButton";
 import { ApplicationRoutes } from "../routes";
 import LoginStateButton from "./shared/LoginStateButton";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Header() {
   const [t, i18n] = useTranslation();
+
+  const { user } = useAuth();
 
   return (
     <nav
@@ -23,10 +27,10 @@ function Header() {
           </div>
 
           <div className="flex items-center gap-x-7 max-lg:hidden">
-            <DesktopNavLink
+            {/* <DesktopNavLink
               href={ApplicationRoutes.pages.home}
               text={t("header.home")}
-            />
+            /> */}
 
             <DesktopNavLink
               items={[
@@ -97,6 +101,13 @@ function Header() {
               href={ApplicationRoutes.pages.contact}
               text={t("header.contact")}
             />
+
+            {user !== null && (
+              <DesktopNavLink
+                href={"/order-project"}
+                text={t("header.order-project")}
+              />
+            )}
 
             <ChangeLangButton />
 
@@ -189,6 +200,13 @@ function Header() {
               href={ApplicationRoutes.pages.contact}
               text={t("header.contact")}
             />
+
+            {user !== null && (
+              <DesktopNavLink
+                href={"/order-project"}
+                text={t("header.order-project")}
+              />
+            )}
 
             <ChangeLangButton />
 

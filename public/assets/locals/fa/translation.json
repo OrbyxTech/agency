@@ -28,7 +28,8 @@
       }
     },
     "contact": "ارتباط با ما",
-    "cta-text": "دریافت نقل قول"
+    "cta-text": "دریافت نقل قول",
+    "order-project": "سفارش پروژه"
   },
   "home": {
     "hero": {
@@ -560,7 +561,8 @@
   },
   "our-projects": {
     "title": "محصولات ما",
-    "subtitle": "خانه - محصولات ما"
+    "subtitle": "خانه - محصولات ما",
+    "search-placeholder": "جستجو پروژه ها"
   },
   "about-us": {
     "title": "درباره ما",
@@ -589,7 +591,8 @@
       "name": "نام",
       "email": "ایمیل *",
       "message": "پیام *",
-      "submit-text": "ارسال پیام"
+      "submit-text": "ارسال پیام",
+      "phone-placeholder": "شماره تماس (09113332211)"
     }
   },
   "footer": {
@@ -709,5 +712,56 @@
       "placeholder": "نظر خود را با ما به اشتراک بگذارید",
       "btn": "ارسال نظر"
     }
+  },
+  "auth": {
+    "login-state-component": {
+      "logged-in": "خروج از حساب کاربری",
+      "not-logged-in": "ورود"
+    },
+    "sign-up": {
+      "title": "ثبت نام",
+      "subtitle": "امنیت - ثبت نام",
+      "form": {
+        "title": "ثبت نام",
+        "subtitle": "ساخت اکانت برای دسترسی بیشتر",
+        "username-placeholder": "نام کاربری",
+        "email-placeholder": "ایمیل",
+        "first-name-placeholder": "نام",
+        "last-name-placeholder": "نام خانوادگی",
+        "password-placeholder": "رمز",
+        "submit-btn-text": "ثبت نام",
+        "submit-btn-text-on-submit": "در حال ثبت نام...",
+        "have-account": "در حال حاضر اکانت دارید؟",
+        "sign-in-link": "ورود"
+      }
+    },
+    "sign-in": {
+      "title": "ورود",
+      "subtitle": "امنیت - ورود",
+      "form": {
+        "title": "ورود",
+        "subtitle": "ورود به حساب کاربری",
+        "identifier-placeholder": "نام کاربری یا ایمیل",
+        "password-placeholder": "رمز",
+        "submit-btn-text": "ورود",
+        "submit-btn-text-on-submit": "در حال ورود...",
+        "dont-have-account": "حساب کاربری ندارید؟",
+        "sign-up-link": "ثبت نام"
+      }
+    }
+  },
+  "order-project": {
+    "title": "سفارش پروژه",
+    "subtitle": "خانه - سفارش پروژه",
+    "form-title": "سفارش پروژه",
+    "form-subtitle": "ما بهترین کیفیت را برای شما عرضه میکنیم.",
+    "is-free-label": "رایگان",
+    "first-name-placeholder": "نام",
+    "last-name-placeholder": "نام خانوادگی",
+    "email-placeholder": "ایمیل",
+    "phone-placeholder": "شماره تماس (09113332211)",
+    "description-placeholder": "توضیحات",
+    "submit-btn-text": "ارسال",
+    "submit-btn-text-on-submit": "در حال ارسال..."
   }
 }

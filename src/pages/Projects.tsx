@@ -52,7 +52,7 @@ function Projects() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         containerClasses="max-w-sm mx-auto my-10"
-        placeholder="Search Projects"
+        placeholder={t("our-projects.search-placeholder")}
       />
 
       {/* Projects Grid  */}
@@ -63,7 +63,7 @@ function Projects() {
       ) : projectsData?.data?.length > 0 ? (
         <ProjectsGrid data={projectsData} />
       ) : (
-        "There is no article"
+        "There is no Project"
       )}
 
       <Banner_1

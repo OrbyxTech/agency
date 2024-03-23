@@ -28,7 +28,8 @@
       }
     },
     "contact": "Contact Us",
-    "cta-text": "Get a Qoutes"
+    "cta-text": "Get a Qoutes",
+    "order-project": "Order Project"
   },
   "home": {
     "hero": {
@@ -332,7 +333,8 @@
   },
   "our-projects": {
     "title": "Our Projects",
-    "subtitle": "Home - Our Projects"
+    "subtitle": "Home - Our Projects",
+    "search-placeholder": "Search Projects"
   },
   "about-us": {
     "title": "About Us",
@@ -361,7 +363,8 @@
       "name": "Name",
       "email": "Email *",
       "message": "Message *",
-      "submit-text": "Send a Message"
+      "submit-text": "Send a Message",
+      "phone-placeholder": "Phone (09113332211)"
     }
   },
   "footer": {
@@ -481,5 +484,56 @@
       "placeholder": "Share your comment with us",
       "btn": "Send Comment"
     }
+  },
+  "auth": {
+    "login-state-component": {
+      "logged-in": "Logout",
+      "not-logged-in": "Sign In"
+    },
+    "sign-up": {
+      "title": "Sign Up",
+      "subtitle": "Auth - Sign Up",
+      "form": {
+        "title": "Sign Up",
+        "subtitle": "Create an account to get bla bla bla",
+        "username-placeholder": "Username",
+        "email-placeholder": "Email",
+        "first-name-placeholder": "First Name",
+        "last-name-placeholder": "Last Name",
+        "password-placeholder": "Password",
+        "submit-btn-text": "Submit",
+        "submit-btn-text-on-submit": "Submitting...",
+        "have-account": "Already have an account?",
+        "sign-in-link": "Sign In"
+      }
+    },
+    "sign-in": {
+      "title": "Sign In",
+      "subtitle": "Auth - Sign In",
+      "form": {
+        "title": "Sign In",
+        "subtitle": "Sign in your account",
+        "identifier-placeholder": "Username or Email",
+        "password-placeholder": "Password",
+        "submit-btn-text": "Submit",
+        "submit-btn-text-on-submit": "Submitting...",
+        "dont-have-account": "Don't have account?",
+        "sign-up-link": "Sign up"
+      }
+    }
+  },
+  "order-project": {
+    "title": "Order Project",
+    "subtitle": "Home - Order Project",
+    "form-title": "Order Project",
+    "form-subtitle": "We deliver best quality products To you.",
+    "is-free-label": "Is Free",
+    "first-name-placeholder": "First Name",
+    "last-name-placeholder": "Last Name",
+    "email-placeholder": "Email",
+    "phone-placeholder": "Phone (09113332211)",
+    "description-placeholder": "Description",
+    "submit-btn-text": "Submit",
+    "submit-btn-text-on-submit": "Submitting..."
   }
 }

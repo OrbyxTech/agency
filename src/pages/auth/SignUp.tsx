@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t } from "i18next";
 import { SignUpSchemaType, SignUpSchema } from "../../lib/validation";
 import { Link } from "react-router-dom";
 import { useSignUp } from "../../lib/react-query";
+import { useTranslation } from "react-i18next";
 
 const SignUp = () => {
+  const [t] = useTranslation();
+
   const { mutate, isLoading } = useSignUp();
 
   const {
@@ -28,16 +29,20 @@ const SignUp = () => {
   return (
     <div className="min-h-screen mb-10">
       <div className="w-full py-32 bg-black/95 flex flex-col items-center justify-center px-4">
-        <p className="text-white text-6xl lg:text-7xl">Sign Up</p>
-        <p className="text-lg mt-3 text-white/60">Auth - SignUp</p>
+        <p className="text-white text-6xl lg:text-7xl">
+          {t("auth.sign-up.title")}
+        </p>
+        <p className="text-lg mt-3 text-white/60">
+          {t("auth.sign-up.subtitle")}
+        </p>
       </div>
 
       <div className="flex flex-col items-center mt-10">
         <p className="text-5xl lg:text-6xl font-[iranyekan400] text-slate-900 leading-[4.2rem]">
-          Sign Up
+          {t("auth.sign-up.form.title")}
         </p>
         <p className="text-base text-slate-700 mt-5 font-[iranyekan300] leading-7">
-          Create an account to get bla bla bla
+          {t("auth.sign-up.form.subtitle")}
         </p>
       </div>
 
@@ -51,7 +56,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={"Username"}
+            placeholder={t("auth.sign-up.form.username-placeholder")}
             maxLength={80}
             {...register("username")}
           />
@@ -67,7 +72,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={"Email *"}
+            placeholder={t("auth.sign-up.form.email-placeholder")}
             maxLength={80}
             {...register("email")}
           />
@@ -83,7 +88,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={"First Name *"}
+            placeholder={t("auth.sign-up.form.first-name-placeholder")}
             maxLength={80}
             {...register("first_name")}
           />
@@ -101,7 +106,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={"Last Name *"}
+            placeholder={t("auth.sign-up.form.last-name-placeholder")}
             maxLength={80}
             {...register("last_name")}
           />
@@ -117,7 +122,7 @@ const SignUp = () => {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200 w-full"
-            placeholder={"Password *"}
+            placeholder={t("auth.sign-up.form.password-placeholder")}
             maxLength={80}
             {...register("password")}
           />
@@ -127,18 +132,20 @@ const SignUp = () => {
         </div>
 
         <button
-          className="w-full max-w-md block mx-auto bg-black/90 text-white text-lg font-[iranyekan300]
+          className="w-full !text-center max-w-md block mx-auto bg-black/90 text-white text-lg font-[iranyekan300]
                         py-3 mt-8 active:scale-95 transition-transform duration-300"
           disabled={isLoading}
         >
-          {isLoading ? "Submitting..." : "Submit"}
+          {isLoading
+            ? t("auth.sign-up.form.submit-btn-text-on-submit")
+            : t("auth.sign-up.form.submit-btn-text")}
         </button>
       </form>
 
-      <div className="mt-10 text-center">
-        Already have an account?&nbsp;
+      <div className="mt-10 !text-center">
+        {t("auth.sign-up.form.have-account")}&nbsp;
         <Link className="text-blue-500" to={"/sign-in"}>
-          SignIn
+          {t("auth.sign-up.form.sign-in-link")}
         </Link>
       </div>
     </div>

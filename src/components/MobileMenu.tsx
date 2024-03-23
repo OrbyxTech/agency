@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ChangeLangButton from "./ChangeLangButton";
 import { menuItems } from "../utils/http";
 import { menuItemOptions } from "../utils/http/menuItems";
-import { HashLink } from "react-router-hash-link";
 // import {
 //     Accordion,
 //     AccordionButton,
@@ -15,8 +14,8 @@ import { HashLink } from "react-router-hash-link";
 //     Box
 // } from "@chakra-ui/react"
 import { ApplicationRoutes } from "../routes";
-import getBaseUrl from "../utils/base-url";
 import LoginStateButton from "./shared/LoginStateButton";
+import { useAuth } from "../context/AuthContext";
 
 const getLang = (lng) => {
   const languages = ["en", "fa"];
@@ -24,6 +23,8 @@ const getLang = (lng) => {
 };
 
 function MobileMenu() {
+  const { user } = useAuth();
+
   const [isOpen, setIsOpen] = useState(false);
   const [t, i18n] = useTranslation();
   const [items, setItems] = useState<menuItemOptions>();
@@ -95,13 +96,13 @@ function MobileMenu() {
               {t("header.home")}
             </Link>
 
-            <HashLink
-              to={getBaseUrl() + "#about-us-section"}
+            <Link
+              to={ApplicationRoutes.pages.company["about-us"]}
               className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
                             hover:bg-white/5 rounded-lg transition-colors duration-300"
             >
               {t("about-us.title")}
-            </HashLink>
+            </Link>
 
             {/* <HashLink
               to={getBaseUrl() + "#our-services-section"}
@@ -116,7 +117,7 @@ function MobileMenu() {
               className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
                             hover:bg-white/5 rounded-lg transition-colors duration-300"
             >
-              Projects
+              {t("header.work.sub-links.project")}
             </Link>
 
             <Link
@@ -124,7 +125,7 @@ function MobileMenu() {
               className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
                             hover:bg-white/5 rounded-lg transition-colors duration-300"
             >
-              Blogs
+              {t("header.blog.text")}
             </Link>
 
             <Link
@@ -135,7 +136,17 @@ function MobileMenu() {
               {t("header.contact")}
             </Link>
 
-            <LoginStateButton className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide text-left hover:bg-white/5 rounded-lg transition-colors duration-300" />
+            {user !== null && (
+              <Link
+                to={"/order-project"}
+                className="p-2.5 text-white text-sm font-[iranyekan400] tracking-wide
+                            hover:bg-white/5 rounded-lg transition-colors duration-300"
+              >
+                {t("header.order-project")}
+              </Link>
+            )}
+
+            <LoginStateButton className="p-2.5 text-white text-sm font-[iranyekan400] rtl:text-right ltr:text-left tracking-wide hover:bg-white/5 rounded-lg transition-colors duration-300" />
           </div>
 
           {/* <Accordion

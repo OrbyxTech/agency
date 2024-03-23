@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import getBaseUrl from "../utils/base-url";
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { ContactUsSchema, ContactUsSchemaType } from "../lib/validation";
@@ -47,7 +46,7 @@ function ContactUs() {
               <img
                 loading="lazy"
                 alt=""
-                src={getBaseUrl() + "assets/icons/icons8-instagram-50.png"}
+                src={"/assets/icons/icons8-instagram-50.png"}
                 className="w-5 h-5 hover:opacity-60 transition-opacity duration-300"
               />
             </a>
@@ -55,7 +54,7 @@ function ContactUs() {
               <img
                 loading="lazy"
                 alt=""
-                src={getBaseUrl() + "assets/icons/icons8-youtube-50.png"}
+                src={"/assets/icons/icons8-youtube-50.png"}
                 className="w-5 h-5 hover:opacity-60 transition-opacity duration-300"
               />
             </a>
@@ -63,7 +62,7 @@ function ContactUs() {
               <img
                 loading="lazy"
                 alt=""
-                src={getBaseUrl() + "assets/icons/icons8-twitter-50.png"}
+                src={"/assets/icons/icons8-twitter-50.png"}
                 className="w-5 h-5 hover:opacity-60 transition-opacity duration-300"
               />
             </a>
@@ -89,7 +88,7 @@ function ContactUs() {
             className="text-base text-slate-900 font-[iranyekan300] focus:outline-none border-b
                         border-b-slate-300 p-3 pb-1 placeholder-slate-400 focus:border-b-slate-500
                         transition-colors duration-200"
-            placeholder={"Phone* (09202003344)"}
+            placeholder={t("contact-us.form.phone-placeholder")}
             {...register("phone")}
           />
           {errors.phone && (
