@@ -21,6 +21,7 @@ import {
 import { QUERY_KEYS } from "./keys.ts";
 import { useAuth } from "../../context/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 /* -------------------------------------------------------------------------- */
 /*                                AUTH QUERIES                                */
@@ -239,15 +240,19 @@ export const useGetProjects = ({ searchTerm }: { searchTerm: string }) => {
 /*                            ORDER PROJECT QUERIES                           */
 /* -------------------------------------------------------------------------- */
 export const useOrderProject = () => {
+  const [t] = useTranslation();
   const navigate = useNavigate();
 
   const { mutate, isPending: isLoading } = useMutation({
     mutationKey: ["OrderProject"],
     mutationFn: orderProject,
-    onSuccess: () => {
-      alert("Succesfull");
-
-      return navigate("/");
+    onSuccess: (data) => {
+      if ("code" in data) {
+        return alert(t("requests.order-project-error-response"));
+      } else {
+        alert(t("requests.order-project-success-response"));
+        return navigate("/");
+      }
     },
   });
 

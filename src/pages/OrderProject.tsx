@@ -144,7 +144,7 @@ const OrderProject = () => {
         )}
 
         <button
-          className="w-full max-w-md block mx-auto bg-black/90 text-white text-lg font-[iranyekan300]
+          className="w-full !text-center max-w-md block mx-auto bg-black/90 text-white text-lg font-[iranyekan300]
                         py-3 mt-8 active:scale-95 transition-transform duration-300"
           disabled={orderProjectMutationLoading}
         >

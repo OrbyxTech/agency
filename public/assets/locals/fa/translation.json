@@ -763,5 +763,9 @@
     "description-placeholder": "توضیحات",
     "submit-btn-text": "ارسال",
     "submit-btn-text-on-submit": "در حال ارسال..."
+  },
+  "requests": {
+    "order-project-success-response": "پروژه با موفقیت ایجاد شد. منتظر پاسخ ادمین باشید",
+    "order-project-error-response": "درخواست قبلی شما در حال بررسی است، لطفا صبر کنید."
   }
 }

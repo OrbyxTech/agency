@@ -535,5 +535,9 @@
     "description-placeholder": "Description",
     "submit-btn-text": "Submit",
     "submit-btn-text-on-submit": "Submitting..."
+  },
+  "requests": {
+    "order-project-success-response": "Project created successfully. wait for admin response",
+    "order-project-error-response": "Your previous request is being reviewed, please wait."
   }
 }

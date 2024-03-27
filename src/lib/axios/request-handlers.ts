@@ -304,7 +304,9 @@ export const orderProject = async ({
   email,
   number,
   description,
-}: OrderProjectValues): Promise<OrderProjectResponse> => {
+}: OrderProjectValues): Promise<
+  OrderProjectResponse | OrderProjectErrorResponse
+> => {
   const formData = new FormData();
 
   formData.append(
@@ -333,5 +335,21 @@ export const orderProject = async ({
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
+
+interface OrderProjectErrorResponse {
+  message: string;
+  name: string;
+  code: string | number;
+  data: {
+    data: null;
+    error: {
+      status: number;
+      name: string;
+      message: string;
+      details: unknown;
+    };
+  };
+}
